@@ -13,7 +13,6 @@
         FB.init({appId: '1520222368275265', cookie: true})
 
         $('#sign_in').click(function(e){
-            console.log('hi');
             e.preventDefault()
             FB.login(function(response){
                 if(response.authResponse) {
