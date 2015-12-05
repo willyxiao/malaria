@@ -29,4 +29,31 @@ ActiveRecord::Schema.define(version: 20151205171925) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.integer  "community_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.integer  "game_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "community_id", null: false
+    t.datetime "time_started", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.integer  "community_id",                null: false
+    t.integer  "game_id",                     null: false
+    t.boolean  "state",        default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end
