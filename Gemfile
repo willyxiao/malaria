@@ -24,6 +24,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Foundation
 gem 'foundation-rails'
 
+# Facebook login
+gem 'omniauth-facebook', '~> 1.4.1'
+
+gem 'envyable'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
