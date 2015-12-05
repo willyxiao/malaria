@@ -28,8 +28,9 @@ gem 'foundation-rails'
 gem 'omniauth-facebook', '~> 1.4.1'
 
 gem 'envyable'
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
