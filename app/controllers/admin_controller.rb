@@ -6,19 +6,20 @@ class AdminController < ApplicationController
     end
     
     def login
+        params.permit(:email, :password)
         @admin = Admin.find_by_email(params[:email])
-        if @admin.password == params[:password]
+        if @admin && @admin.password == params[:password]
             session[:admin_id] = @admin.id
-            redirect_to action: "dashboard"
+            redirect_to admin_url
         else
-            redirect_to "login"
+            redirect_to admin_login_url
         end
     end
 
     def dashboard
         @admin = get_admin
         if @admin.nil?
-            redirect_to action: "login"
+            redirect_to admin_login_url
         end
     end
     
@@ -28,6 +29,4 @@ class AdminController < ApplicationController
         session[:admin_id] ? Admin.find(session[:admin_id]) : nil
     end
 
-    def hash
-    end
 end
