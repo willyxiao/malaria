@@ -3,22 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <META name="keywords" content="malaria, malaria.buzz, malaria buzz, mosquitos suck, malaria sucks, mosquitoes suck, malaria assassins">
     <title><%= content_for?(:title) ? yield(:title) : "Malaria Assassins" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "vendor/foundation" %>
+    <%= javascript_include_tag "vendor/flipclock" %>
+    <%= stylesheet_link_tag "vendor/flipclock" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
     <%= csrf_meta_tags %>
   </head>
 
   <body>
   
-  <h2>MALARIA ASSASSINS</h2>
+  <h1>MALARIA ASSASSINS</h1>
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
-        <h1><a href="#">Malaria Assassins</a></h1>
+        <h1><a href="/">Malaria Assassins</a></h1>
       </li>
        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -27,21 +31,22 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-        <li><a href="#">About</a></li>
+        <li><a href="about.html">About</a></li>
       </ul>
   
       <!-- Left Nav Section -->
       <ul class="left">
         <li class="has-dropdown"><a href="#">The Game</a>
         <ul class="dropdown">
-            <li><a href="rules.html">RULES</a></li>
             <li><a href="dashboard.html">DASHBOARD</a></li>
+            <li><a href="rules.html">RULES</a></li>
         </ul>
         </li>
         <li class="has-dropdown">
           <a href="#">Malaria</a>
           <ul class="dropdown">
-            <li><a href="#">Get Involved</a></li>
+            <li><a href="facts.html">FACTS</a></li>
+            <li><a href="get_involved.html">GET INVOLVED</a></li>
           </ul>
         </li>
       </ul>

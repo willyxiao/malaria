@@ -2,7 +2,7 @@
     $('body').prepend('<div id="fb-root"></div>')
     
     $.ajax({
-        url: "//connect.facebook.net/en_US/all.js",
+        url: "//connect.facebook.net/en_US/sdk.js",
         dataType: 'script',
         cache: true,
     })
@@ -10,7 +10,12 @@
 
 !function(){
     window.fbAsyncInit = function() {
-        FB.init({appId: '1520222368275265', cookie: true})
+        FB.init({
+            appId: '1520222368275265', 
+            // enable cookies to allow server to access the session
+            cookie: true,
+            version: 'v2.2'
+        });
 
         $('#sign_in').click(function(e){
             e.preventDefault()
