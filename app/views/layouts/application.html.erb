@@ -6,22 +6,25 @@
     <META name="keywords" content="malaria, malaria.buzz, malaria buzz, mosquitos suck, malaria sucks, mosquitoes suck, malaria assassins">
     <title><%= content_for?(:title) ? yield(:title) : "Malaria Assassins" %></title>
 
+  <!--include links to stylesheets and javascript used-->
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "vendor/foundation" %>
-    <%= javascript_include_tag "vendor/flipclock" %>
     <%= stylesheet_link_tag "vendor/flipclock" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "vendor/flipclock" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-
+    
     <%= csrf_meta_tags %>
   </head>
 
   <body>
   
-  <h1>MALARIA ASSASSINS</h1>
+  <h1 class="text-center">MALARIA ASSASSINS</h1>
+  
+  <!--navigation bar (top of page)-->
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
+        <!--home page-->
         <h1><a href="/">Malaria Assassins</a></h1>
       </li>
        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
@@ -45,13 +48,32 @@
         <li class="has-dropdown">
           <a href="#">Malaria</a>
           <ul class="dropdown">
-            <li><a href="facts.html">FACTS</a></li>
+            <li><a href="quiz.html">QUIZ</a></li>
             <li><a href="get_involved.html">GET INVOLVED</a></li>
           </ul>
         </li>
       </ul>
     </section>
   </nav>
+  
+  <!--Flash Messages-->
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
+  
+  <div class="row">
+  <div class="large-1 columns"></div>
+  <div class="large-10 columns"></div>
   <%= yield %>
+    <div class="large-1 columns"></div>
+</div>
+  <br />
+  <br />
+  <br />
+  <hr>
+  <p><i>Copyright 2015 Harvard Malaria Competition Winners</i> | Bianca Mulaney for CS50</p>
+  <p><i>Sponsored by the <a href="https://www.defeatingmalaria.harvard.edu">Defeating Malaria Initiative</a></i></p>
+
+
   </body>
 </html>

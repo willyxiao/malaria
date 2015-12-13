@@ -1,9 +1,13 @@
+<body class="text-center">
+<div class="row">
+<div class="large-1 columns"></div>
+<div class="large-10 columns">
 <p>
   <!--login button-->
   <div id="user_nav" class="button large secondary">
     <% if current_user %>
-      Signed in as <strong><%= current_user.name %></strong>!
-      <%= redirect_to dashboard_url %>
+      Signed in as <strong><%= current_user.name %></strong>&nbsp;&nbsp;<img src="<%= current_user.image %>" style="border-radius:5px;"/>
+      <br />
       <%= link_to "Sign out", signout_path, id: "sign_out" %>
     <% else %>
       <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
@@ -13,10 +17,13 @@
 
 <p>
   <!--countdown timer-->
-  <div class="clock" style="margin:2em;"></div>
-
+  <div class="clock" style="margin:2em;"></div> 
+  <h2>until World Malaria Day</h2>
 </p>
 
 <p>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/A2-XTlHBf_4" frameborder="0" allowfullscreen></iframe>
 </p>
+</div>
+<div class="large-1 columns"></div>
+</body>
