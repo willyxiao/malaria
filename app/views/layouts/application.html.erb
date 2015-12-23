@@ -3,22 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <META name="keywords" content="malaria, malaria.buzz, malaria buzz, mosquitos suck, malaria sucks, mosquitoes suck, malaria assassins">
     <title><%= content_for?(:title) ? yield(:title) : "Malaria Assassins" %></title>
 
+  <!--include links to stylesheets and javascript used-->
     <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "vendor/flipclock" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "vendor/flipclock" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    
     <%= csrf_meta_tags %>
   </head>
 
   <body>
   
-  <h2>MALARIA ASSASSINS</h2>
+  <h1 class="text-center">MALARIA ASSASSINS</h1>
+  
+  <!--navigation bar (top of page)-->
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
+<<<<<<< HEAD
         <h1><%= link_to "Malaria Assassins", root_url %></h1>
+=======
+        <!--home page-->
+        <h1><a href="/">Malaria Assassins</a></h1>
+>>>>>>> f1b1625c5bbefaa42425c7e4ff27d71d30e10d90
       </li>
        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
       <li class="toggle-topbar menu-icon"><a>Menu</a></li>
@@ -27,26 +38,59 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
+<<<<<<< HEAD
         <li><a>About</a></li>
+=======
+        <li><a href="about.html">About</a></li>
+>>>>>>> f1b1625c5bbefaa42425c7e4ff27d71d30e10d90
       </ul>
   
       <!-- Left Nav Section -->
       <ul class="left">
         <li class="has-dropdown"><a>The Game</a>
         <ul class="dropdown">
+<<<<<<< HEAD
             <li><%= link_to "Rules", "rules.html" %></li>
             <!--<li><%= link_to "Dashboard", dashboard_url %></li>-->
+=======
+            <li><a href="dashboard.html">DASHBOARD</a></li>
+            <li><a href="rules.html">RULES</a></li>
+>>>>>>> f1b1625c5bbefaa42425c7e4ff27d71d30e10d90
         </ul>
         </li>
         <li class="has-dropdown">
           <a>Malaria</a>
           <ul class="dropdown">
+<<<<<<< HEAD
             <li><a>Get Involved</a></li>
+=======
+            <li><a href="quiz.html">QUIZ</a></li>
+            <li><a href="get_involved.html">GET INVOLVED</a></li>
+>>>>>>> f1b1625c5bbefaa42425c7e4ff27d71d30e10d90
           </ul>
         </li>
       </ul>
     </section>
   </nav>
+  
+  <!--Flash Messages-->
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
+  
+  <div class="row">
+  <div class="large-1 columns"></div>
+  <div class="large-10 columns"></div>
   <%= yield %>
+    <div class="large-1 columns"></div>
+</div>
+  <br />
+  <br />
+  <br />
+  <hr>
+  <p><i>Copyright 2015 Harvard Malaria Competition Winners</i> | Bianca Mulaney for CS50</p>
+  <p><i>Sponsored by the <a href="https://www.defeatingmalaria.harvard.edu">Defeating Malaria Initiative</a></i></p>
+
+
   </body>
 </html>

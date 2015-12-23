@@ -1,5 +1,83 @@
 <!--announcements header-->
 <div class="off-canvas-content" data-off-canvas-content>
 <div class="info">
-    <h5>insert announcements ticker here</h5>
+  <ul id="ticker01">
+  	<li><span></span><a href="#">ANNOUNCEMENTS</a></li>
+  	<li><span>10/6/2015</span><a href="#">Game will be starting in April 2016!</a></li>
+  	<li><span>10/6/2015</span><a href="https://youtu.be/dQw4w9WgXcQ">In the meantime, check out this cool video...</a></li>
+  </ul>
+</div>
+
+  <div id="user_nav"  class="text-center">
+    <h2>Assassins Dashboard</h2>
+  </div>
+
+<!--user's personal information-->
+  <div class="row">
+    <div class="large-6 columns">
+      <table>
+        <thead>
+          <tr>
+            <th class="button large secondary" width="400">
+              <h4>Welcome, <strong><%= current_user.name %></strong></h4>
+              <img src="<%= current_user.image %>" style="border-radius:5px;"/>
+              <br />
+              <br />
+              <%= link_to "Sign out", signout_path, id: "sign_out" %>
+              </th>
+          </tr>
+        </thead>
+      </table>
+  </div>
+  
+<!--user's school information-->
+  <div class="large-6 columns">
+    <table>
+      <thead>
+        <tr>
+          <th class="button large secondary" width="400">
+            <h4><strong>Harvard University <%= current_user.community %></strong></h4>
+            <img src="http://bit.ly/1FYSJci" alt="logo" height="54" width="54" style="border-radius:5px;"/>
+            <br />
+            <br />
+            <a href="http://college.harvard.edu/">Website</a>
+            <br />
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+  
+<!--user stats table-->
+  <div class="row">
+    <div class="large-6 columns">
+      <table>
+        <thead>
+          <tr>
+            <th width="400">YOUR STATS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Your Quiz Score: <%= @user.quizscore %></td></tr>
+          <tr><td>Number of Kills: <i>forthcoming</i></td></tr>
+          <tr><td><strong>Next Target:</strong> <i>forthcoming</i></td></tr>
+        </tbody>
+      </table>
+  </div>
+  
+<!--school stats table-->
+  <div class="large-6 columns">
+    <table>
+      <thead>
+        <tr>
+          <th width="400">SCHOOL STATS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total enrolled: <i>forthcoming</i></td></tr>
+        <tr><td>School ranking: <i>forthcoming</i></td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>

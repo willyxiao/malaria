@@ -11,7 +11,40 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require flipclock
+ *= require foundation
+ *= require li-scroller
  *= require_self
  *= require foundation_and_overrides
 
  */
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #717D8C;
+}
+
+.button {
+  background-color: #DDDDDD;
+}
+
+/*a normal, unvisited link*/
+a:link {
+  color: #80CEB9;
+}
+
+/*a link the user has visited*/
+a:visited {
+  color: #41AAC4;
+}
+
+/*a link when the user mouses over it*/
+a:hover {
+  color: #41AAC4;
+}
+
+/*a link the moment it is clicked*/
+a:active {
+  color: #BDB69C;
+}
+
