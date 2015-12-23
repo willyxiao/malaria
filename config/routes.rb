@@ -9,6 +9,5 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#dashboard'
   post 'admin/login', to:'admin#login'
   get 'admin/login', to:'admin#login_page'
-  
 
 end
