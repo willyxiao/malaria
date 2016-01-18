@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
 //= require foundation
-//= require facebook
 //= require_tree .
-
-$(function(){ $(document).foundation(); });

@@ -1,0 +1,39 @@
+!!!
+%html{ lang: 'en' }
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+
+    %title= content_for?(:title) ? yield(:title) : "Malaria Assassins"
+  
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    %h2 MALARIA ASSASSINS
+    %nav.top-bar{ role: 'navigation' }
+      %ul.title-area
+        %li.name
+          %h1= link_to "Malaria Assassins", root_url
+        %li.toggle-topbar.menu-icon
+          %a Menu
+      
+      %section.top-bar-section
+        %ul.left
+          %li
+            = link_to "Dashboard", dashboard_url
+          %li
+            = link_to "Rules", "rules.html"
+      
+        %ul.right
+          %li= link_to "About", ""
+          -if current_user
+            %li
+              %a{ href: signout_path }
+                Signed in as
+                = current_user.name
+    .row
+      .small-12.columns
+        = yield
