@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "welcome#index" 
   get 'dashboard', to:'welcome#dashboard'
+  get 'signup', to: 'welcome#signup'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
