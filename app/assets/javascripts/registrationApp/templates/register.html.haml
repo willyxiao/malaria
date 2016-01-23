@@ -1,6 +1,15 @@
-%div
+%div{ 'ng-show': '!community' }
+    .alert-box.alert{ 'ng-show': 'error' }
+        Sorry the registration code you entered:
+        %code {{ error }} 
+        is invalid
     .progress.small-12
         %span.meter.secondary{ style: "width: {{ ctrl.step >= 1 ? 33 : 0 }}%" }
         %span.meter.secondary.success{ style: "width: {{ ctrl.step >= 2 ? 33 : 0 }}%" }
         %span.meter.secondary.alert{ style: "width: 0%" }
     %button.btn{ 'ng-click': 'ctrl.increment()' } Increment
+%div{ 'ng-show': 'community' }
+    .alert-box
+        You are signing up for {{ community.name }} at {{ community.school.name }}
+    %a{ href: 'auth/facebook' }
+        = image_tag "facebook_login.png", 'ng-click': 'fbLogin()'

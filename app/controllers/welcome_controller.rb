@@ -10,12 +10,14 @@ class WelcomeController < ApplicationController
   def check_hash
     communities = Community.where(hash1: params[:hash])
     render json:  if communities.empty?
+                    session.delete :community_id
                     {
                       success: false,
                       error: "#{ params[:hash] } was not found"
                     }
                   else
                     community = communities.first
+                    session[:community_id] = community.id
                     {
                       success: true,
                       community: {

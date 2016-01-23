@@ -9,7 +9,11 @@ class WillyMailer < ApplicationMailer
         @communities.each do |community|
             logger.debug community
         end
-        mail(to: WILLY_EMAIL, subject: "Community Hash")
+        subject = Rails.env.production? ?
+            "Community Hash Production" :
+            "Community Hash Development"
+            
+        mail(to: WILLY_EMAIL, subject: subject)
     end
     
 end
