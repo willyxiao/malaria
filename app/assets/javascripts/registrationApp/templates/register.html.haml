@@ -1,7 +1,6 @@
 %div
-    {{ hello }}
-    // .progress.small-12
-    //     %span.meter.secondary{ style: "width: {{ ctrl.step >= 1 ? 33 : 0 }}%" }
-    //     %span.meter.secondary.success{ style: "width: {{ ctrl.step >= 2 ? 33 : 0 }}%" }
-    //     %span.meter.secondary.alert{ style: "width: 0%" }
-    // %button.btn{ 'ng-click': 'ctrl.increment()' } Increment
+    .progress.small-12
+        %span.meter.secondary{ style: "width: {{ ctrl.step >= 1 ? 33 : 0 }}%" }
+        %span.meter.secondary.success{ style: "width: {{ ctrl.step >= 2 ? 33 : 0 }}%" }
+        %span.meter.secondary.alert{ style: "width: 0%" }
+    %button.btn{ 'ng-click': 'ctrl.increment()' } Increment

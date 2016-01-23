@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # get 'dashboard', to:'welcome#dashboard'
   
   get 'register', to: 'welcome#register'
+  get 'register/check/:hash', to: 'welcome#check_hash'
   get 'register/:hash', to: 'welcome#register_hash'
 
   get 'auth/:provider/callback', to: 'sessions#create'
