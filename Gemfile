@@ -34,8 +34,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
 gem 'angularjs-rails', '~> 1.4.8'
+gem 'angular_rails_csrf'
+# gem 'rails-angular-material'
 
 gem 'figaro'
+
 
 # gem 'puma'
 # Use Unicorn as the app server

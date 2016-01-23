@@ -4,10 +4,17 @@ class WelcomeController < ApplicationController
   def index
   end
 
-  def signup
+  def register
   end
 
+  def register_hash
+    redirect register_url + "#/#{ params[:hash] }"
+  end
+  
   def dashboard
+  end
+  
+  def rules
   end
 
   private

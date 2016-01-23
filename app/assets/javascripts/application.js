@@ -13,5 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-animate
+//= require angular-aria
+//= require angular-messages
+//= require angular-route
 //= require foundation
 //= require_tree .
