@@ -1,7 +1,8 @@
 class WillyMailer < ApplicationMailer
     WILLY_EMAIL = 'willyxiao@gmail.com'
+    MALARIA_CHALLENGE = 'malariachallenge@gmail.com'
 
-    default from: WILLY_EMAIL
+    default from: MALARIA_CHALLENGE
     
     def community_hash_email()
         @communities = Community.all

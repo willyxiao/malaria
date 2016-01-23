@@ -16,3 +16,6 @@ config/env.yml
 .byebug_history
 spring/*
 .env
+
+# Ignore application configuration
+/config/application.yml
