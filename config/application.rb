@@ -22,5 +22,16 @@ module Malaria
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.smtp_settings = {
+    #   :user_name => 'willyxiao',
+    #   :password => '',
+    #   :domain => 'malaria.buzz',
+    #   :address => 'smtp.sendgrid.net',
+    #   :port => 587,
+    #   :authentication => :plain,
+    #   :enable_starttls_auto => true
+    # }
   end
 end
