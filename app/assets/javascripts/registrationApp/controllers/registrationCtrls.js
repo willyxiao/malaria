@@ -15,7 +15,9 @@
         }
         
         function filterHash(hash) {
-            return String(hash).replace(/[^A-Za-z0-9]/g, '');
+            return hash 
+                ? String(hash).replace(/[^A-Za-z0-9]/g, '')
+                : undefined;
         }        
 
         function resetPage() {
