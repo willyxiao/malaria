@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123170731) do
+ActiveRecord::Schema.define(version: 20160123180448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20160123170731) do
     t.string   "hash3",      null: false
     t.integer  "school_id"
   end
+
+  add_index "communities", ["school_id", "name"], name: "index_communities_on_school_id_and_name", unique: true, using: :btree
 
   create_table "friends", force: :cascade do |t|
     t.integer "user_id"
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160123170731) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "schools", ["name"], name: "index_schools_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                             null: false

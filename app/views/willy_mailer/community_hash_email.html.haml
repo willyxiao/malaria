@@ -1,0 +1,7 @@
+!!!
+%html
+    %head
+    %body
+        - @communities.each do |community|
+            %p
+                = [community.name, community.school, community.hash1, community.hash2, community.hash3].join(" ")
