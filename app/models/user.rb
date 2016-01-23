@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
     #     foreign_key: :user_id, 
     #     association_foreign_key: :friend_user_id
     
+    def self.find_registered(id)
+        user = self.find(id)
+        user.community.nil? ? nil : user
+    end
+    
     def self.from_omniauth(auth)
         where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
             user.provider = auth.provider
