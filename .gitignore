@@ -14,3 +14,4 @@
 
 config/env.yml
 .byebug_history
+spring/*

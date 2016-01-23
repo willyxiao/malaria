@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118005926) do
+ActiveRecord::Schema.define(version: 20160123170731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
-    t.integer  "community_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",         null: false
     t.string   "password_hash"
+    t.integer  "school_id"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160118005926) do
     t.string   "hash1",      null: false
     t.string   "hash2",      null: false
     t.string   "hash3",      null: false
+    t.integer  "school_id"
   end
 
   create_table "friends", force: :cascade do |t|
@@ -51,6 +52,12 @@ ActiveRecord::Schema.define(version: 20160118005926) do
     t.integer  "game_id",                     null: false
     t.integer  "target_id"
     t.boolean  "state",        default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
