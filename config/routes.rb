@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: redirect('/register')
+  root 'welcome#index'
   
   get 'rules', to: 'welcome#rules'
   # get 'dashboard', to:'welcome#dashboard'
@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   get 'register/check/:hash', to: 'welcome#check_hash'
   get 'register/:hash', to: 'welcome#register_hash'
 
+  get 'login', to: 'welcome#login'
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  
+
   
   # get 'admin', to: 'admin#dashboard'
   # post 'admin/login', to:'admin#login'

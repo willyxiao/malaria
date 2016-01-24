@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
-  before_action :require_no_login, only: [:index, :signup]
+  before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
+  before_action :require_logged_in, only: [:index]
   
   def index
   end
@@ -43,14 +44,10 @@ class WelcomeController < ApplicationController
   def dashboard
   end
   
+  def login
+  end
+  
   def rules
   end
 
-  private
-  
-  def require_no_login
-    if not current_user.nil?
-      redirect_to dashboard_url
-    end
-  end
 end

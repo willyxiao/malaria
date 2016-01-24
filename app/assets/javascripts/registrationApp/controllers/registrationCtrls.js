@@ -6,40 +6,41 @@
     registrationCtrls.controller("RegistrationCtrl", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
         $scope.hash = filterHash($routeParams.hash);
         $scope.community = undefined;
+        $scope.processingHash = false;
         $scope.getHashDataP = getHashDataP;
-        $scope.fbLogin = fbLogin;
-        $scope.getHashDataP();
+        $scope.processHash = processHash;
 
-        function fbLogin() {
-            console.log('hi');
+        if ($routeParams.hash) {
+            $scope.getHashDataP();
+        }
+        
+        function processHash() {
+            if ($scope.hash && $scope.hash.length == 4) {
+                $scope.getHashDataP(); 
+            }
         }
         
         function filterHash(hash) {
             return hash 
                 ? String(hash).replace(/[^A-Za-z0-9]/g, '')
                 : undefined;
-        }        
-
-        function resetPage() {
-            $scope.hash = undefined;
-            $scope.community = undefined;
         }
 
         function getHashDataP() {
-            if (!$scope.hash) {
-                resetPage();
-            }
+            $scope.processingHash = true;
             $http.get(HASH_CHECK_URL + $scope.hash).then(function(response) {
                 if (response.data && response.data.success) {
                     $scope.community = response.data.community;
                 }
                 else {
                     $scope.error = $scope.hash;
-                    resetPage();
+                    console.error($scope.hash);
                 }
+                $scope.processingHash = false;
             }).catch(function(err) {
+                $scope.error = err;
                 console.error(err);
-                resetPage();
+                $scope.processingHash = false;
             })
         }
     }]);

@@ -14,3 +14,8 @@
  *= require_self
  *= require foundation_and_overrides
  */
+
+input.ma-material {
+    border: 0;
+    border-bottom: 1px solid black;
+}
