@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 schools_hash = [
-    { 
+    {
         name: 'Harvard', 
         communities: [
             { name: 'Eliot House'}

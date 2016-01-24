@@ -5,23 +5,25 @@
             %code {{ error }} 
             is invalid. Please try again.
         .row
-            .small-4.small-offset-4.columns
-                %form
-                    %input.text-center.ma-material{ name: 'hash', 
-                        'ng-model': 'hash',
-                        'ng-change': 'processHash()',
-                        placeholder: 'Registration Code (e.g. HbAS)', 
-                        autofocus: 'true', 
-                        'ng-disabled': 'processingHash' }
+            .small-6.small-offset-3.columns
+                %p
+                    %form
+                        %input.text-center.ma-material{ name: 'hash', 
+                            'ng-model': 'hash',
+                            'ng-change': 'processHash()',
+                            placeholder: 'Registration Code (e.g. HbAS)', 
+                            autofocus: 'true', 
+                            'ng-disabled': 'processingHash' }
             // .small-4.columns
 .row{ 'ng-show': 'community' }
     .small-12.columns
         .row
             .small-6.small-offset-3.columns.text-center
-                .panel.callout
-                    %p You are signing up for {{ community.name }} at {{ community.school.name }}
+                %p
+                    .panel.callout
+                        %p You are registering for {{ community.name }} at {{ community.school.name }}.
                 %p          
-                    %a{ href: 'auth/facebook' }
+                    %a{ href: '/auth/facebook' }
                         = image_tag "facebook_login.png"
 .row
     .small-12.columns.text-center

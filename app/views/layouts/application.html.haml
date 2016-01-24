@@ -2,6 +2,7 @@
 %html{ lang: 'en' }
   %head
     %meta{ charset: 'utf-8' }
+    %meta{ charset: 'utf-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
 
     %title= content_for?(:title) ? yield(:title) : "Malaria Assassins"
@@ -12,7 +13,7 @@
     = csrf_meta_tags
 
   %body
-    %h2 MALARIA ASSASSINS
+    // %h2 MALARIA ASSASSINS
     %nav.top-bar{ role: 'navigation' }
       %ul.title-area
         %li.name
