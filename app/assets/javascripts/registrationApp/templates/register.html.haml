@@ -17,13 +17,25 @@
 .row{ 'ng-show': 'community' }
     .small-12.columns
         .row
-            .small-4.small-offset-4.columns
-                .alert-box
-                    You are signing up for {{ community.name }} at {{ community.school.name }}
-                %a.text-center{ href: 'auth/facebook' }
-                    = image_tag "facebook_login.png"
+            .small-6.small-offset-3.columns.text-center
+                .panel.callout
+                    %p You are signing up for {{ community.name }} at {{ community.school.name }}
+                %p          
+                    %a{ href: 'auth/facebook' }
+                        = image_tag "facebook_login.png"
+.row
+    .small-12.columns.text-center
+        %p
+            = image_tag "logo-small.png", height: "30%", class: 'bordered'
 .row
     .progress.small-12
-        %span.meter.info{ style: "width: 33%" } 
+        %span.meter.info{ style: "width: 33%" }
         %span.meter.success{ style: "width: {{ community ? 30 : 0 }}%" }
         // %span.meter.secondary.success{ style: "width: {{ ctrl.step >= 2 ? 33 : 0 }}%" }
+.row
+    .small-4.columns.text-center
+        .label.info Get to the site!
+    .small-4.columns.text-center
+        .label.success Enter school code
+    .small-4.columns.text-center
+        .label.warning Login!

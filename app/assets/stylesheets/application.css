@@ -19,3 +19,10 @@ input.ma-material {
     border: 0;
     border-bottom: 1px solid black;
 }
+
+img.bordered {
+   padding:1px;
+   border:3px solid #9F000F;
+   /*background-color:#ff0;    */
+}
+

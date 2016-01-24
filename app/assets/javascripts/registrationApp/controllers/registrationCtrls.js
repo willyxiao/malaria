@@ -3,7 +3,7 @@
 
     var registrationCtrls = angular.module('registrationCtrls', []).controller()
 
-    registrationCtrls.controller("RegistrationCtrl", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+    registrationCtrls.controller("RegistrationCtrl", ["$scope", "$http", "$routeParams", "$timeout", function($scope, $http, $routeParams, $timeout) {
         $scope.hash = filterHash($routeParams.hash);
         $scope.community = undefined;
         $scope.processingHash = false;
@@ -36,12 +36,14 @@
                     $scope.error = $scope.hash;
                     console.error($scope.hash);
                 }
-                $scope.processingHash = false;
             }).catch(function(err) {
                 $scope.error = err;
                 console.error(err);
-                $scope.processingHash = false;
-            })
+            }).then(function() {
+                $timeout(function() {
+                    $scope.processingHash = false;                     
+                }, 1000);
+            });
         }
     }]);
 }(angular);
