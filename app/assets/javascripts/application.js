@@ -18,4 +18,5 @@
 //= require angular-messages
 //= require angular-route
 //= require foundation
+//= require angular-timer.min
 //= require_tree .
