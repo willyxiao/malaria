@@ -2,7 +2,7 @@
     .small-12.columns
         .alert-box.alert{ 'ng-show': 'error' }
             Sorry the registration code you entered:
-            %code {{ error }} 
+            %code {{ error }}
             is invalid. Please try again.
         .row
             .small-6.small-offset-3.columns
@@ -14,7 +14,6 @@
                             placeholder: 'Registration Code (e.g. HbAS)', 
                             autofocus: 'true', 
                             'ng-disabled': 'processingHash' }
-            // .small-4.columns
 .row{ 'ng-show': 'community' }
     .small-12.columns
         .row
@@ -33,7 +32,6 @@
     .progress.small-12
         %span.meter.info{ style: "width: 33%" }
         %span.meter.success{ style: "width: {{ community ? 30 : 0 }}%" }
-        // %span.meter.secondary.success{ style: "width: {{ ctrl.step >= 2 ? 33 : 0 }}%" }
 .row
     .small-4.columns.text-center
         .label.info Get to the site!
@@ -41,3 +39,7 @@
         .label.success Enter school code
     .small-4.columns.text-center
         .label.warning Login!
+.row{ 'ng-show': '!community', style: 'padding: 10px' }
+    .small-6.small-offset-3.columns.text-center
+        Already registered on this website?
+        %a{ href: 'auth/facebook' } Click here to login instead.

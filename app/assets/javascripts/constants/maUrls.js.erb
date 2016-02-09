@@ -1,0 +1,11 @@
+#= depend_on_asset "registrationApp/templates/register.html"
+#= depend_on_asset "directives/templates/maTimer.html"
+#= depend_on_asset "malariaApp/templates/dashboard.html"
+
+! function(angular) {
+    angular.module('maUrls', []).constant('maUrls', {
+        'register': "<%= asset_path('registrationApp/templates/register.html') %>",
+        'dashboard': "<%= asset_path('malariaApp/templates/dashboard.html') %>",
+        'timer': "<%= asset_path('directives/templates/maTimer.html') %>",
+    });
+}(angular);

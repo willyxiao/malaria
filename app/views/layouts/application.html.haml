@@ -13,7 +13,6 @@
     = csrf_meta_tags
 
   %body
-    // %h2 MALARIA ASSASSINS
     %nav.top-bar{ role: 'navigation' }
       %ul.title-area
         %li.name
@@ -27,11 +26,10 @@
             = link_to "Rules", "rules.html"
       
         %ul.right
-          // %li= link_to "About", ""
           -if current_user
             %li
               %a{ href: signout_path }
-                Signed in as
+                Signout as
                 = current_user.name
     - if @flash_message
       .row
