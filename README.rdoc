@@ -21,6 +21,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* Helpful Commands in C9
+    sudo service postgresql start
+    rails sever -p $PORT -b $IP
+    git push heroku master
+    heroku run ??
+
 * ...
 
 
