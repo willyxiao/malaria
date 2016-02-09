@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   
-  namespace :api do
-    get 'user', to:    
+  scope '/api' do
+    get 'user', to: 'api#user'
   end
+
   # get 'admin', to: 'admin#dashboard'
   # post 'admin/login', to:'admin#login'
   # get 'admin/login', to:'admin#login_page'

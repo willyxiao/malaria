@@ -1,6 +1,6 @@
 !function(angular) {
     
-    var maDirectives = angular.module("maDirectives", ['maUrls']);
+    var maDirectives = angular.module("maDirectives", ['maUrls', 'maFilters']);
     
     maDirectives.directive('maTimer', ['maUrls', '$timeout', function(maUrls, $timeout) {
         return {
