@@ -1,7 +1,20 @@
 class Community < ActiveRecord::Base
     has_one :game
     belongs_to :school
-    
+    has_many :users
+
+    def create_game(duplicate = false)
+        if !self.game.nil?
+            throw "Game already created"
+        end
+        
+        game = Game.create_game(self)
+        self.users.each do |user|
+            Player.create!(game: game, user: user, community: self)
+        end
+        game.shuffle_targets
+    end
+
     def self.create_new(name, school_id)
         self.create!({ 
             name: name, 
