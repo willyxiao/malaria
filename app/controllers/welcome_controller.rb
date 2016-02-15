@@ -1,8 +1,14 @@
 class WelcomeController < ApplicationController
-  before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
+  before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login, :index_public]
   before_action :require_logged_in, only: [:index]
   
   def index
+  end
+
+  def weebly_copy
+  end
+  
+  def why
   end
 
   def register

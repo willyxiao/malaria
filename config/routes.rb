@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'welcome#weebly_copy'
+  # root 'welcome#index'
+
+  get 'why', to: 'welcome#why'
   
   get 'rules', to: 'welcome#rules'
   # get 'dashboard', to:'welcome#dashboard'
