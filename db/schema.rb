@@ -43,14 +43,14 @@ ActiveRecord::Schema.define(version: 20160123180448) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "community_id", null: false
-    t.datetime "time_started", null: false
+    t.datetime "time_started", null: false #TODO change to not null
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "players", force: :cascade do |t|
-    t.integer  "community_id",                null: false
-    t.integer  "user_id",                     null: false
+    t.integer  "community_id",                null: false #TODO delete
+    t.integer  "user_id",                     null: false 
     t.integer  "game_id",                     null: false
     t.integer  "target_id"
     t.boolean  "state",        default: true, null: false
