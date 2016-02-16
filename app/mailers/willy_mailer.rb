@@ -12,8 +12,12 @@ class WillyMailer < ApplicationMailer
         subject = Rails.env.production? ?
             "Community Hash Production" :
             "Community Hash Development"
-            
         mail(to: WILLY_EMAIL, subject: subject)
     end
     
+    def email_confirmation_email(user)
+        @hash = user.email_hash
+        subject = "Confirm your Malaria Assassins email"
+        mail(to: user.email, subject: subject)
+    end
 end

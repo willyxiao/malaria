@@ -1,0 +1,8 @@
+.row
+    .small-12.columns
+        = form_tag method: :post do
+            .input-group
+                %label{ for: 'email' } Email: 
+                %input.ma-material.text-center{ name: 'email', type: 'email', placeholder: 'email@ending.in.edu', autofocus: true }
+            .input-group
+                %input.button{ type: 'submit' }

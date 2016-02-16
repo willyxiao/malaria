@@ -31,12 +31,12 @@
               %a{ href: signout_path }
                 Signout as
                 = current_user.name
-    - if @flash_message
+    - if flash[:message]
       .row
         .small-12.columns
           .callout.alert
             %h5 Warning
-            %p= @flash_message
+            %p= flash[:message]
     .row
       .small-12.columns
         = yield

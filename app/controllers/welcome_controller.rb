@@ -1,10 +1,40 @@
 class WelcomeController < ApplicationController
   before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
   before_action :require_logged_in, only: [:index]
+  before_action :require_email, only: [:index]
   
   def index
   end
 
+  def email
+    @current_user = current_user
+  end
+
+  def email_confirm
+    if User.email_in_use?(current_user.email)
+      redirect_to email_url, flash: { message: "Email #{current_user.email} already in use, please use another" }
+    elsif params[:hash] == current_user.email_hash
+      current_user.confirmed_email = true
+      current_user.save!
+    else
+      redirect_to email_url, flash: { message: "Hash #{params[:hash]} incorrect" }
+    end
+  end
+  
+  def email_submit
+    if params[:email]
+      begin
+        current_user.save_unconfirmed_email(params[:email])
+        WillyMailer.email_confirmation_email(current_user).deliver_now
+        redirect_to root_url, flash: { message: "Check your email to confirm" }
+      rescue => ex
+        redirect_to email_url, flash: { message: "Email either in use or invalid, please try again" }
+      end
+    else
+      redirect_to email_url, flash: { message: "Enter an email" }
+    end
+  end
+  
   def register
   end
 

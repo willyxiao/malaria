@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   
+  get 'email', to: 'welcome#email'
+  post 'email', to: 'welcome#email_submit'
+  get 'email/:hash', to: 'welcome#email_confirm'
+  
   scope '/api' do
     get 'user', to: 'api#user'
   end
