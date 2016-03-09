@@ -48,7 +48,6 @@ schools_hash.each do |school_hash|
             puts("Community exists: " + community_hash[:name])
         end
     end
+end
 
 WillyMailer.community_hash_email().deliver_now
-
-end
