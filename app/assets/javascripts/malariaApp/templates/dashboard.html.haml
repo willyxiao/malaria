@@ -1,3 +1,8 @@
+.row{ 'ng-if': '!user.confirmed_email' }
+    .small-12.columns
+        .alert.alert-box
+            Your email is unconfirmed. You will need to confirm it to play the game! Resubmit your email by clicking 
+            %a{ href: '/email' } here.
 .row
     .small-3.columns
         %img{ 'ng-src': 'https://graph.facebook.com/v2.5/{{ user.uid }}/picture?type=large' }

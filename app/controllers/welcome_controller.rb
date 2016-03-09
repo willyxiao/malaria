@@ -16,6 +16,7 @@ class WelcomeController < ApplicationController
     elsif params[:hash] == current_user.email_hash
       current_user.confirmed_email = true
       current_user.save!
+      redirect_to root_url, flash: { message: "Successfully confirmed email." }
     else
       redirect_to email_url, flash: { message: "Hash #{params[:hash]} incorrect" }
     end
