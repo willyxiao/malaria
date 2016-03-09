@@ -2,7 +2,8 @@ schools_hash = [
     {
         name: 'Harvard', 
         communities: [
-            { name: 'Eliot House'}
+            { name: 'Eliot House' },
+            { mame: 'Test House' },
         ],
     },
     {
