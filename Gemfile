@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Foundation
 gem 'foundation-rails'
+gem 'font-awesome-sass'
 
 # Facebook login
 gem 'omniauth-facebook', '~> 1.4.1'
