@@ -31,7 +31,9 @@
 .row
     .small-12.columns
         %label Kill Story:
-        %textarea{ placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
+        %textarea#kill-story{ placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
+        %label Please type your target's name to confirm the kill:
+        %input.ma-material{ type: 'text', placeholder: '{{ "hello" }}' }
         %button.button.expand.disabled I eliminated my target (Disabled)
 .row
     .small-3.columns

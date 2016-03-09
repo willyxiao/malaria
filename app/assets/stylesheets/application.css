@@ -19,6 +19,7 @@
 input.ma-material {
     border: 0;
     border-bottom: 2px solid black;
+    box-shadow: none;
 }
 
 img.bordered {
