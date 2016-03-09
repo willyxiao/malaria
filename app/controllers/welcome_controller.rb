@@ -58,10 +58,6 @@ class WelcomeController < ApplicationController
                           id: community.school.id,
                           name: community.school.name,
                         }
-                        # admin: {
-                          
-                        #   email: community.school.admin.email
-                        # }
                       }
                     }
                   end
