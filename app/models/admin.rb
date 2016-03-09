@@ -1,5 +1,5 @@
 class Admin < ActiveRecord::Base
-    has_one :community
+    belongs_to :school
     
     # users.password_hash in the database is a :string
     include BCrypt

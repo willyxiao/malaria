@@ -1,0 +1,38 @@
+%h2
+    Hello
+    = @admin.school.name
+    admin!
+
+%h3 Stats
+
+%table.table.table-bordered
+    %tbody
+        %thead
+            %tr
+                %th
+                %th
+        %tr
+            %td Registered Players
+            %td= @users.count
+        
+%h3 Here are your players
+%p (Email willyxiao@gmail.com if any of these players shouldn't be here!)
+%table
+    %thead
+        %tr
+            %th Community
+            %th ID
+            %th Picture
+            %th Name
+            %th Email
+            %th Confirmed Email?
+    %tbody
+        - @users.each do |user|
+            %tr
+                %td= user.community.name
+                %td= user.id
+                %td
+                    = image_tag user.image
+                %td= user.name
+                %td= user.email
+                %td= user.confirmed_email

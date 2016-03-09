@@ -21,6 +21,9 @@ class AdminController < ApplicationController
         if @admin.nil?
             redirect_to admin_login_url
         end
+        
+        @users = @admin.school.communities.map(&:users).flatten.uniq
+        @users.sort_by(&:community_id)
     end
     
     private 

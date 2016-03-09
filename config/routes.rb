@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     get 'user', to: 'api#user'
   end
 
-  # get 'admin', to: 'admin#dashboard'
-  # post 'admin/login', to:'admin#login'
-  # get 'admin/login', to:'admin#login_page'
-
+  scope '/admin' do
+    get '/', to: 'admin#dashboard', as: :admin
+    post '/login', to: 'admin#login'
+    get '/login', to: 'admin#login_page', as: :admin_login
+  end
 end

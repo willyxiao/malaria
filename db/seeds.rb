@@ -1,17 +1,33 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 schools_hash = [
     {
         name: 'Harvard', 
         communities: [
             { name: 'Eliot House'}
         ],
+    },
+    {
+        name: 'Northwestern',
+        communities: [],
+    },
+    {
+        name: 'Berkeley',
+        communities: [],
+    },
+    {
+        name: 'Northeastern',
+        communities: [],
+    },
+    {
+        name: 'Duke',
+        communities: [],
+    },
+    {
+        name: 'Stanford',
+        communities: [],
+    },
+    {
+        name: 'UCLA',
+        communities: [],
     }
 ]
 
