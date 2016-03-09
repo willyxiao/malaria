@@ -3,15 +3,41 @@
         .alert.alert-box
             Your email is unconfirmed. You will need to confirm it to play the game! Resubmit your email by clicking 
             %a{ href: '/email' } here.
+.row 
+    .small-7.columns
+        %h3 Dashboard
+        %h3.subheader
+            You're playing in 
+            %strong {{ user.community }} 
+            at 
+            %strong {{user.school}}
+    .small-5.columns{ 'ng-if': '!user.school == "Eliot House"' }
+        %div{ 'ma-timer': 'startDate' }
+.row.text-center
+    .small-4.columns
+        %img{ 'ng-src': 'https://graph.facebook.com/v2.5/{{ user.uid }}/picture?type=large' }
+        %p {{ user.name }} (You)
+    .small-4.columns
+        .row
+            .small-12
+                %li.fa.fa-times.fa-5x
+                %li.fa.fa-long-arrow-right.fa-5x
+        .row
+            .small-12
+                %strong Assassinate
+    .small-4.columns
+        %li.fa.fa-question.fa-5x.fa-border
+        %p ????????? (Target)
+.row
+    .small-12.columns
+        %label Kill Story:
+        %textarea{ placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
+        %button.button.expand.disabled I eliminated my target (Disabled)
 .row
     .small-3.columns
-        %img{ 'ng-src': 'https://graph.facebook.com/v2.5/{{ user.uid }}/picture?type=large' }
-    .small-6.columns
-        %div{ 'ma-timer': 'startDate' }
-    .small-3.columns
-        .alert.alert-box.info
+        %blockquote
             %p
-                The game is starting soon! Check back here for your target on April 11.
+                The game is starting soon! Come back here for your target on April 11.
             %p 
-                In the meantime check out our website:  
+                In the meantime, check out our website:  
                 %a{ href: "http://malaria.buzz", target: '_blank' } malaria.buzz.
