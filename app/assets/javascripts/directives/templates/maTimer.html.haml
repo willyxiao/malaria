@@ -1,20 +1,16 @@
 .row
     .small-12.columns
-        .panel
-            %ul.inline-list.text-center
-                %li 
-                    {{ days | numberFixedLen:2 }}
-                    %p Days
-                %li :
-                %li
-                    {{ hours | numberFixedLen:2 }}
-                    %p Hours
-                %li :
-                %li
-                    {{ minutes | numberFixedLen:2 }}
-                    %p Minutes
-                %li :
-                %li
-                    {{ seconds | numberFixedLen:2 }}
-                    %p Seconds
+        .row
+            .small-3.columns.text-center
+                {{ days | numberFixedLen:2 }}
+                %p Days
+            .small-3.columns.text-center
+                {{ hours | numberFixedLen:2 }}
+                %p Hours
+            .small-3.columns.text-center
+                {{ minutes | numberFixedLen:2 }}
+                %p Minutes
+            .small-3.columns.text-center
+                {{ seconds | numberFixedLen:2 }}
+                %p Seconds
             
