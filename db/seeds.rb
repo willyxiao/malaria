@@ -28,7 +28,9 @@ schools_hash = [
     },
     {
         name: 'UCLA',
-        communities: ['MEMO'],
+        communities: [ 
+            { name: 'MEMO' }
+        ],
     }
 ]
 
