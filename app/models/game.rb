@@ -17,6 +17,10 @@ class Game < ActiveRecord::Base
     end
     
     def self.create_game(community, time_started=Time.new(2016, 04, 11, 3, 0, 0))
-        self.create!(community: community, time_started: time_started)
+        game = self.create!(community: community, time_started: time_started)
+        community.users.each do |user|
+            Player.create_player(user, game, community)
+        end
+        game.shuffle_targets
     end
 end

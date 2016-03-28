@@ -14,25 +14,20 @@
         %tr
             %td Registered Players
             %td= @users.count
-        
-%h3 Here are your players
-%p (Email willyxiao@gmail.com if any of these players shouldn't be here!)
+
+%h3 Here are the communities
 %table
     %thead
         %tr
-            %th Community
-            %th ID
-            %th Picture
-            %th Name
-            %th Email
-            %th Confirmed Email?
+            %th Community Name
+            %th Registration Code
     %tbody
-        - @users.each do |user|
+        - @admin.school.communities.each do |community|
             %tr
-                %td= user.community.name
-                %td= user.id
                 %td
-                    = image_tag user.image
-                %td= user.name
-                %td= user.email
-                %td= user.confirmed_email
+                    = link_to community.name, admin_community_url(:community_id => community.id)
+                %td= community.hash1
+
+%p (Email willyxiao@gmail.com if any of these players shouldn't be here!)
+
+= render 'users', locals: { users: @users }

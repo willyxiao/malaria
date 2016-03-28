@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     get '/', to: 'admin#dashboard', as: :admin
+    get '/community/:community_id', to: 'admin#community', as: :admin_community
+    get '/community/:community_id/game', to:'admin#start_game', as: :admin_start_game
     post '/login', to: 'admin#login'
     get '/login', to: 'admin#login_page', as: :admin_login
   end

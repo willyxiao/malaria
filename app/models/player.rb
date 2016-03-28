@@ -9,4 +9,8 @@ class Player < ActiveRecord::Base
         dead: 0,
         alive: 1
     }
+    
+    def self.create_player(user, game, community)
+        self.create!(community: community, game: game, user: user, state: self.states[:alive])
+    end
 end
