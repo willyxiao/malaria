@@ -1,9 +1,17 @@
 class WelcomeController < ApplicationController
   before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
-  before_action :require_logged_in, only: [:index]
+  before_action :require_logged_in, only: [:index, :kill, :email]
   before_action :require_email, only: [:index]
+  before_action :require_confirmed_email, only: [:kill]
   
   def index
+    @user = current_user
+    @player = @user.players.first
+    @game = @player.nil? ? nil : @player.game
+  end
+
+  def kill
+    
   end
 
   def email
@@ -66,9 +74,6 @@ class WelcomeController < ApplicationController
   
   def register_hash
     redirect_to register_url + "#/#{ params[:hash] }"
-  end
-  
-  def dashboard
   end
   
   def login

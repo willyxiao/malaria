@@ -33,6 +33,16 @@ class ApplicationController < ActionController::Base
       redirect_to email_url
     end
   end
+
+  def require_confirmed_email
+    if not user_confirmed_email?
+      redirect_to root_url
+    end
+  end
+  
+  def user_confirmed_email?
+    (not current_user.email.nil?) and current_user.confirmed_email
+  end
   
   helper_method :current_user
   helper_method :require_logged_in

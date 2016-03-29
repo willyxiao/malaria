@@ -1,3 +1,51 @@
-.row{ 'ng-app': 'malariaApp' }
-    .small-12.columns{ 'ng-view': true }
- 
+- if not @user.confirmed_email
+    .row
+        .small-12.columns
+            .alert.alert-box
+                %p
+                    Your email address is unconfirmed. Please check your inbox (be sure to check your spam too). 
+                    Once you confirm your email address, you will be allowed to report kills.
+                %p
+                    Resubmit your email by clicking 
+                    %a{ href: '/email' } here.
+.row
+    .small-7.columns
+        %h3 Dashboard
+        .row
+            .small-12.columns
+                %blockquote
+                    %p
+                        The game is starting soon! Come back here for your target on April 11.
+                    %p 
+                        In the meantime, check out our website:  
+                        %a{ href: "http://malaria.buzz", target: '_blank' } http://malaria.buzz.
+        %h3.subheader
+            You're playing in 
+            %strong= @user.community.name
+            at 
+            %strong= @user.community.school.name
+.row.text-center
+    .small-4.columns
+        %img{ src: "https://graph.facebook.com/v2.5/#{@user.uid}/picture?type=large" }
+        %p= "#{@user.name} (You)"
+    .small-4.columns
+        .row
+            .small-12
+                %li.fa.fa-long-arrow-right.fa-5x
+        .row
+            .small-12
+                %strong To assassinate
+    .small-4.columns
+        - if @game.nil?
+            %li.fa.fa-question.fa-5x.fa-border
+            %p ????????? (Target)
+        - else
+            %img{ src: "https://graph.facebook.com/v2.5/#{@player.target.user.uid}/picture?type=large" }
+            %p= "#{@player.target.user.name}"
+.row
+    .small-12.columns
+        %form{ action: kill_url, method: 'post' }
+            = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+            %label Kill Story:
+            %textarea#kill-story{ name: 'killstory', placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
+            %input.button.expand{ type: 'submit' }
