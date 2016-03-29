@@ -1,0 +1,9 @@
+%table
+    %thead
+        %th Time
+        %th Story
+    %tbody
+        - stories.each do |story|
+            %tr
+                %td= story.created_at
+                %td= story.story

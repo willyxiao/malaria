@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123180448) do
+ActiveRecord::Schema.define(version: 20160329192938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,17 +43,26 @@ ActiveRecord::Schema.define(version: 20160123180448) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "community_id", null: false
-    t.datetime "time_started", null: false #TODO change to not null
+    t.datetime "time_started", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "killstories", force: :cascade do |t|
+    t.integer  "game_id",       null: false
+    t.integer  "killer_id",     null: false
+    t.integer  "dead_id",       null: false
+    t.text     "story"
+    t.boolean  "is_kill_story", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "players", force: :cascade do |t|
-    t.integer  "community_id",                null: false #TODO delete
-    t.integer  "user_id",                     null: false 
-    t.integer  "game_id",                     null: false
+    t.integer  "community_id", null: false
+    t.integer  "user_id",      null: false
+    t.integer  "game_id",      null: false
     t.integer  "target_id"
-    t.boolean  "state",        default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

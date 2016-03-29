@@ -1,0 +1,11 @@
+// :javascript
+//     $(document).ready( function() {
+//         alert('hi!');
+//     } );
+.row
+    .small-6.columns
+        %h4.text-center Kill Stories
+        = render partial: 'shared/killstory', locals: { stories: killstories }
+    .small-6.columns
+        %h4.text-center Death Stories
+        = render partial: 'shared/killstory', locals: { stories: deathstories }

@@ -8,10 +8,22 @@ class WelcomeController < ApplicationController
     @user = current_user
     @player = @user.players.first
     @game = @player.nil? ? nil : @player.game
+    
+    @killstories = Killstory.where(game: @game, is_kill_story: true).order(created_at: :desc)
+    @deathstories = Killstory.where(game: @game, is_kill_story: false).order(created_at: :desc)    
   end
 
   def kill
+    @user = current_user
+    @player = current_user.players.take
+    if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
+      throw "Error in killstory"
+    end
+    @player.target = @player.target.target
+    @player.save!
     
+    # TODO insert malaria related question
+    redirect_to root_url
   end
 
   def email

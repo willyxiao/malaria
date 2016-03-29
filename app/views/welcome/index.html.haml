@@ -49,3 +49,4 @@
             %label Kill Story:
             %textarea#kill-story{ name: 'killstory', placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
             %input.button.expand{ type: 'submit' }
+= render partial: 'shared/killstories', locals: { killstories: @killstories, deathstories: @deathstories }
