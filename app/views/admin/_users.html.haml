@@ -1,4 +1,3 @@
-%h3 Here are your players
 %table
     %thead
         %tr
@@ -8,8 +7,10 @@
             %th Name
             %th Email
             %th Confirmed Email?
+            - if defined? show_target and show_target
+                %th Target ID
     %tbody
-        - @users.each do |user|
+        - users.each do |user|
             %tr
                 %td= user.community.name
                 %td= user.id
@@ -18,3 +19,5 @@
                 %td= user.name
                 %td= user.email
                 %td= user.confirmed_email
+                - if defined? show_target and show_target
+                    %td= Player.find(user.players.first.target_id).user.id

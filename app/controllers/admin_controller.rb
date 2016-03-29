@@ -39,18 +39,21 @@ class AdminController < ApplicationController
             @game = Game.where(community_id: @community.id).first
 
             # TODO FIX THIS
-            @dead_players = @game.players.all.keep_if{ |p| p.state == p.states[:dead] }
+            @dead_players = @game.players.to_a.keep_if{ |p| p.state == "dead" }
 
             alive_players_by_id = @game.
-                players.all.keep_if{ |p| p.state == p.states[:alive] }.group_by(&:id)
-            first = alive_players_id.values.first
-            current = alive_players_id[first.target_id]
+                players.to_a.keep_if{ |p| p.state == "alive" }.group_by(&:id)
+            # byebug
+            first = alive_players_by_id.values.first.first
+            current = alive_players_by_id[first.target_id].first
             
-            @alive_players = [first]
+            @alive_players = [first.user]
             while first.id != current.id
-                @alive_players.push(current)
-                current = alive_players_id[current.target_id]
+                @alive_players.push(current.user)
+                current = alive_players_by_id[current.target_id].first
             end
+            
+            @users = nil
             
             render 'game'
         end

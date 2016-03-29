@@ -1,20 +1,5 @@
-%h3 Here are your players
-%table
-    %thead
-        %tr
-            %th Community
-            %th ID
-            %th Picture
-            %th Name
-            %th Email
-            %th Confirmed Email?
-    %tbody
-        - @users.each do |user|
-            %tr
-                %td= user.community.name
-                %td= user.id
-                %td
-                    = image_tag user.image
-                %td= user.name
-                %td= user.email
-                %td= user.confirmed_email
+%h3 Players alive
+= render partial: 'users', locals: { users: @alive_players, show_target: true }
+
+%h3 Players dead
+= render partial: 'users', locals: { users: @dead_players }

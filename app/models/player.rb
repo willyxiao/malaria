@@ -4,10 +4,10 @@ class Player < ActiveRecord::Base
     belongs_to :community
     has_one :target, class_name: "Player", foreign_key: "target_id"
     belongs_to :assassin, class_name: "Player"
-        
+
     enum state: {
-        dead: 0,
-        alive: 1
+        dead: false,
+        alive: true
     }
     
     def self.create_player(user, game, community)

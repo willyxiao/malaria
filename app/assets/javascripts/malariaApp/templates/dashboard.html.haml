@@ -8,6 +8,14 @@
         %h3 Dashboard
         %h3 Game Begins in...
         %div{ "ma-timer": "startDate" }
+        .row
+            .small-12.columns
+                %blockquote
+                    %p
+                        The game is starting soon! Come back here for your target on April 11.
+                    %p 
+                        In the meantime, check out our website:  
+                        %a{ href: "http://malaria.buzz", target: '_blank' } http://malaria.buzz.
         %h3.subheader
             You're playing in 
             %strong {{ user.community }} 
@@ -34,11 +42,3 @@
         %label Kill Story:
         %textarea#kill-story{ placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
         %button.button.expand.disabled I eliminated my target (Disabled)
-.row
-    .small-3.columns
-        %blockquote
-            %p
-                The game is starting soon! Come back here for your target on April 11.
-            %p 
-                In the meantime, check out our website:  
-                %a{ href: "http://malaria.buzz", target: '_blank' } malaria.buzz.
