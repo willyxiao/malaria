@@ -1,3 +1,7 @@
+.row{ style: 'padding: 10px' }
+    .small-6.small-offset-3.columns.text-center
+        Already registered on this website?
+        %a{ href: 'auth/facebook' } Click here to login instead.
 .row{ 'ng-show': '!community' }
     .small-12.columns
         .alert-box.alert{ 'ng-show': 'error' }
@@ -39,7 +43,3 @@
         .label.success Enter school code
     .small-4.columns.text-center
         .label.warning Login!
-.row{ 'ng-show': '!community', style: 'padding: 10px' }
-    .small-6.small-offset-3.columns.text-center
-        Already registered on this website?
-        %a{ href: 'auth/facebook' } Click here to login instead.
