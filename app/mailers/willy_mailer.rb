@@ -5,7 +5,7 @@ class WillyMailer < ApplicationMailer
     default from: MALARIA_CHALLENGE
     
     def community_hash_email()
-        @communities = Community.all
+        @communities = Community.all.order(school_id: :desc)
         @admins = Admin.all.order(school_id: :desc)
         subject = Rails.env.production? ?
             "Community Hash Production" :
