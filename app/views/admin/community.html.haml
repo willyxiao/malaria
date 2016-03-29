@@ -1,15 +1,18 @@
 Admin for 
 = @community.name
 
-%p
-    THIS GAME HAS NOT STARTED YET, TO START GAME CLICK THIS BUTTON...
-%p
-    .alert-box.warning
-        ONLY DO IT IF YOU'RE READY!
-%p
-    %a{ href: admin_start_game_url(community_id: @community.id) }
-        %button Start Game
-
-%p (Email willyxiao@gmail.com if any of these players shouldn't be here!)
-
-= render 'users', locals: { users: @users }
+- if @users.length == 0
+    %h4 Homie you got no users here
+- else
+    %p
+        THIS GAME HAS NOT STARTED YET, TO START GAME CLICK THIS BUTTON...
+    %p
+        .alert-box.warning
+            ONLY DO IT IF YOU'RE READY!
+    %p
+        %a{ href: admin_start_game_url(community_id: @community.id) }
+            %button Start Game
+    
+    %p (Email willyxiao@gmail.com if any of these players shouldn't be here!)
+    
+    = render 'users', locals: { users: @users }

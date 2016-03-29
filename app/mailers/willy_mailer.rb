@@ -6,9 +6,7 @@ class WillyMailer < ApplicationMailer
     
     def community_hash_email()
         @communities = Community.all
-        @communities.each do |community|
-            logger.debug community
-        end
+        @admins = Admin.all.order(school_id: :desc)
         subject = Rails.env.production? ?
             "Community Hash Production" :
             "Community Hash Development"

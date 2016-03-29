@@ -18,6 +18,11 @@ class AdminController < ApplicationController
         end
     end
 
+    def logout
+        session[:admin_id] = nil
+        redirect_to root_url
+    end
+
     def dashboard
         @admin = get_admin
         if @admin.nil?
@@ -31,7 +36,7 @@ class AdminController < ApplicationController
     def community
         @admin = get_admin
         @community = Community.find(params[:community_id])
-        @users = @community.users
+        @users = @community.users.to_a
         
         if Game.where(community_id: @community.id).count == 0
             render 'community'

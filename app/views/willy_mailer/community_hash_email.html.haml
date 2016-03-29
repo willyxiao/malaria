@@ -1,3 +1,9 @@
+%h2 Communities
 - @communities.each do |community|
     %p
         = [community.name, community.school.name, community.hash1, community.hash2, community.hash3].join(" ")
+
+%h2 Admins
+- @admins.each do |admin|
+    %p
+        = "#{admin.email} #{admin.school.name} #{admin.password}"
