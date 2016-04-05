@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
     @killstories = Killstory.where(game: @game, is_kill_story: true).order(created_at: :desc)
     @deathstories = Killstory.where(game: @game, is_kill_story: false).order(created_at: :desc)
     
-    if @player.dead? 
+    if (not @player.nil?) and @player.dead? 
       render 'dead'
     end
   end
