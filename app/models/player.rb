@@ -3,7 +3,7 @@ class Player < ActiveRecord::Base
     belongs_to :user
     belongs_to :community
     has_one :target, class_name: "Player", foreign_key: "target_id"
-    belongs_to :assassin, class_name: "Player"
+    # belongs_to :assassin, class_name: "Player"
     
     has_many :killstories
 
@@ -27,5 +27,13 @@ class Player < ActiveRecord::Base
         false
         # self.killstories.where > 0 and 
         # KILL_PAUSE < ((Time.now - self.killstory) / 60)
+    end
+    
+    def submitted_death?
+        (Killstory.where(is_kill_story: false, dead_id: self.id).count > 0)
+    end
+    
+    def death_story
+        Killstory.where(is_kill_story: false, dead_id: self.id).take
     end
 end

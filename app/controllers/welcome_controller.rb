@@ -12,9 +12,21 @@ class WelcomeController < ApplicationController
     @killstories = Killstory.where(game: @game, is_kill_story: true).order(created_at: :desc)
     @deathstories = Killstory.where(game: @game, is_kill_story: false).order(created_at: :desc)
     
-    if (not @player.nil?) and @player.dead? 
+    if (not @player.nil?) and @player.dead?
       render 'dead'
     end
+  end
+
+  def death_story
+    @user = current_user
+    
+    @player = @user.players.take
+    assassin = Killstory.where(dead: @player).take.killer
+    
+    if not Killstory.submit_kill(assassin, @user.players.first, false, params[:deathstory])
+      throw "error!"
+    end
+    redirect_to root_url
   end
 
   def kill

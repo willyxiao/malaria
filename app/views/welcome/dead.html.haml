@@ -2,6 +2,16 @@
     .small-12.columns
         %h3 Sorry you're dead :(
         
-        %h4 Check back here in a little bit to submit a death story :) 
+        - if not @player.submitted_death?
+            .row
+                .small-12.columns
+                    %form{ action: death_story_url, method: 'post' }
+                        = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+                        %label Kill Story:
+                        %textarea#kill-story{ name: 'deathstory', placeholder: "As I was eating my cereal...", autofocus: 'true' }
+                        %input.button.expand{ type: 'submit' }
+        - else
+            %p
+                = @player.death_story.story
         
         = render partial: 'shared/killstories', locals: { killstories: @killstories, deathstories: @deathstories }

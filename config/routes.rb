@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'email', to: 'welcome#email_submit'
   get 'email/:hash', to: 'welcome#email_confirm'
   post 'kill', to: 'welcome#kill'
+  post 'death_story', to: 'welcome#death_story'
   
   scope '/api' do
     get 'user', to: 'api#user'
