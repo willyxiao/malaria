@@ -43,6 +43,13 @@ schools_hash = [
             { name: 'MEMO' }
         ],
         admins: [],
+    },
+    {
+        name: 'Caltech',
+        communities: [
+            { name: 'UG Game' }
+        ],
+        admins: ['anamfija@gmail.com'],
     }
 ]
 
