@@ -39,9 +39,9 @@ gem 'angular_rails_csrf'
 
 gem 'figaro'
 
-group :production do
-  gem 'puma'
-end
+# group :production do
+#   gem 'puma'
+# end
 # Use Unicorn as the app server
 # gem 'unicorn'
 
