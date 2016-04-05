@@ -5,6 +5,7 @@ schools_hash = [
             { name: 'Eliot House' },
             { name: 'Test House' },
             { name: "Dhruv's Housizzle" },
+            { name: 'Winthrop House' },
         ],
         admins: [
             'willyxiao@gmail.com',
