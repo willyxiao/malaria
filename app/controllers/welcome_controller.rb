@@ -30,6 +30,11 @@ class WelcomeController < ApplicationController
   end
 
   def kill
+    if params[:killstory].length == 0
+      redirect_to root_url, flash: { message: "No! You have to submit a killstory" }
+      return nil
+    end
+    
     @user = current_user
     @player = current_user.players.take
     if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
@@ -39,6 +44,11 @@ class WelcomeController < ApplicationController
     @player.save!
     
     # TODO insert malaria related question
+    
+    if @player.target.user.confirmed_email
+      WillyMailer.you_just_died(@user, @player.target.user).deliver_now
+    end
+    
     redirect_to root_url
   end
 
@@ -108,6 +118,10 @@ class WelcomeController < ApplicationController
   end
   
   def rules
+    @user = current_user
+    if @user.community.name == 'Winthrop House'
+      render 'custom_rules/winthrop'
+    end
   end
 
 end

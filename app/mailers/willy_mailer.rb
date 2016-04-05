@@ -18,4 +18,11 @@ class WillyMailer < ApplicationMailer
         subject = "Confirm your Malaria Assassins email"
         mail(to: user.email, subject: subject)
     end
+    
+    def you_just_died(assassin, dead)
+        @assassin = assassin
+        @dead = dead
+        subject = "You just died in Malaria Assassins, submit a story! :("
+        mail(to: dead.email, subject: subject)
+    end
 end
