@@ -47,6 +47,7 @@ class AdminController < ApplicationController
             alive_players_by_id = @game.
                 players.to_a.keep_if(&:alive?).group_by(&:id)
             first = alive_players_by_id.values.first.first
+            # byebug
             current = alive_players_by_id[first.target_id].first
             
             @alive_players = [first.user]
