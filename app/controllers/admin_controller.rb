@@ -77,7 +77,7 @@ class AdminController < ApplicationController
         end
         @games = Game.all
         @players = Player.all
-        @user = User.all
+        @users = User.all
     end
     
     private 
