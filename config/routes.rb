@@ -31,5 +31,6 @@ Rails.application.routes.draw do
     post '/login', to: 'admin#login'
     get '/login', to: 'admin#login_page', as: :admin_login
     get '/logout', to:'admin#logout', as: :admin_logout
+    get '/stats', to:'admin#stats', as: :admin_stats
   end
 end

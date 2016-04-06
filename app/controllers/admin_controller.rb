@@ -70,6 +70,16 @@ class AdminController < ApplicationController
         redirect_to :admin_community
     end
     
+    def stats
+        @admin = get_admin
+        if @admin.email != 'willyxiao@gmail.com'
+            redirect_to admin_url
+        end
+        @games = Game.all
+        @players = Player.all
+        @user = User.all
+    end
+    
     private 
     
     def get_admin

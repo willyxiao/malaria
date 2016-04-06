@@ -1,0 +1,9 @@
+%table
+    %tbody
+        %tr
+            %td Games started
+            %td @games.length
+        %tr
+            %td Users registered
+            %td @users.length
+= render partial: 'user', locals: { users: @users }

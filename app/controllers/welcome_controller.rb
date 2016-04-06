@@ -118,8 +118,7 @@ class WelcomeController < ApplicationController
   end
   
   def rules
-    @user = current_user
-    if @user.community.name == 'Winthrop House'
+    if (not current_user.nil?) and current_user.community.name == 'Winthrop House'
       render 'custom_rules/winthrop'
     end
   end
