@@ -11,6 +11,7 @@ schools_hash = [
         admins: [
             'willyxiao@gmail.com',
             'dhruvpillai@college.harvard.edu',
+            'mienwang@college.harvard.edu',
         ],
     },
     {
