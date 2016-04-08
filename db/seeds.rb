@@ -18,7 +18,7 @@ schools_hash = [
         ],
     },
     {
-        name: 'Northwestern',
+        name: 'Northeastern',
         communities: [],
         admins: [],
     },
@@ -28,9 +28,12 @@ schools_hash = [
         admins: [],
     },
     {
-        name: 'Northeastern',
-        communities: [],
-        admins: [],
+        name: 'Northwestern',
+        communities: [
+            { name: 'GMB' },
+            { name: 'CCHI' },
+        ],
+        admins: ['angelayang2016@u.northwestern.edu'],
     },
     {
         name: 'Duke',
@@ -45,9 +48,13 @@ schools_hash = [
     {
         name: 'UCLA',
         communities: [ 
-            { name: 'MEMO' }
+            { name: 'MEMO' },
+            { name: 'TASC' },
+            { name: 'Phi Sigma Rho' }
         ],
-        admins: [],
+        admins: [
+            'thsu2012@ucla.edu',
+        ],
     },
     {
         name: 'Caltech',
