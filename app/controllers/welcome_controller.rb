@@ -18,7 +18,7 @@ class WelcomeController < ApplicationController
     
     if (not @player.nil?) and @player.dead?
       render 'dead'
-    elsif @player.target == @player
+    elsif (not @player.nil?) and @player.target == @player
       render 'win'
     end
   end
