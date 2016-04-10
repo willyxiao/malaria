@@ -8,12 +8,18 @@ class WelcomeController < ApplicationController
     @user = current_user
     @player = @user.players.first
     @game = @player.nil? ? nil : @player.game
+  
+    @players_left = @game.nil? ? 
+      @user.community.users.count : 
+      @game.players.to_a.keep_if(&:alive?).length  
     
     @killstories = Killstory.where(game: @game, is_kill_story: true).order(created_at: :desc)
     @deathstories = Killstory.where(game: @game, is_kill_story: false).order(created_at: :desc)
     
     if (not @player.nil?) and @player.dead?
       render 'dead'
+    elsif @player.target == @player
+      render 'win'
     end
   end
 
@@ -31,12 +37,17 @@ class WelcomeController < ApplicationController
 
   def kill
     if params[:killstory].length == 0
-      redirect_to root_url, flash: { message: "No! You have to submit a killstory" }
+      redirect_to root_url, flash: { message: "You have to submit a killstory" }
       return nil
     end
     
     @user = current_user
     @player = current_user.players.take
+
+    if @player.target == @player
+      throw "Player can't kill themself"
+    end
+      
     if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
       throw "Error in killstory"
     end

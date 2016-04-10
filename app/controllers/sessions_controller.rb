@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(env["omniauth.auth"])
 
     if user.community.nil? and session[:community_id]
+      if not Game.find_by(community_id: session[:community_id]).nil?
+        @flash_message = "This community has already started a game, cannot register"
+        redirect_to register_url
+      end
       user.community_id = session[:community_id]
       user.save!
     elsif user.community.nil?

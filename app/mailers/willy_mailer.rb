@@ -25,4 +25,13 @@ class WillyMailer < ApplicationMailer
         subject = "You just died in Malaria Assassins, submit a story! :("
         mail(to: dead.email, subject: subject)
     end
+    
+    def game_begins_to_willy(community)
+        mail(to: WILLY_EMAIL, subject: "#{community.name} has begun their game")
+    end
+    
+    def game_begins_to_players(community)
+        emails = community.users.where(confirmed_email: true).map(&:email)
+        mail(to: emails, subject: "Malaria Assassins game: #{community.name} has begun!")
+    end
 end

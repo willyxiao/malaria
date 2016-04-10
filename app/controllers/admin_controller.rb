@@ -47,7 +47,6 @@ class AdminController < ApplicationController
             alive_players_by_id = @game.
                 players.to_a.keep_if(&:alive?).group_by(&:id)
             first = alive_players_by_id.values.first.first
-            # byebug
             current = alive_players_by_id[first.target_id].first
             
             @alive_players = [first.user]
@@ -66,7 +65,10 @@ class AdminController < ApplicationController
         if not admin_controls_community?(params[:community_id], get_admin)
             raise "Error admin not tied to community"
         end
-        Game.create_game(Community.find(params[:community_id]))
+        community = Community.find(params[:community_id])
+        Game.create_game(community)
+        WillyMailer.game_begins_to_players(community).deliver_now
+        WillyMailer.game_begins_to_willy(community).deliver_now
         redirect_to :admin_community
     end
     

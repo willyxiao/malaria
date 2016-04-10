@@ -13,5 +13,6 @@
         - else
             %p
                 = @player.death_story.story
-        
+
+        = render partial: 'shared/playersleft', locals: { players_left: @players_left }        
         = render partial: 'shared/killstories', locals: { killstories: @killstories, deathstories: @deathstories }

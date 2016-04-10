@@ -9,8 +9,8 @@
                     Resubmit your email by clicking 
                     %a{ href: '/email' } here.
 .row
-    .small-7.columns
-        %h3 Dashboard
+    .small-12.columns
+        = render partial: 'shared/malariafact'
         - if @game.nil?
             .row
                 .small-12.columns
@@ -25,6 +25,7 @@
             %strong= @user.community.name
             at 
             %strong= @user.community.school.name
+        = render partial: 'shared/playersleft', locals: { players_left: @players_left }
 .row.text-center
     .small-4.columns
         %img{ src: "https://graph.facebook.com/v2.5/#{@user.uid}/picture?type=large" }
