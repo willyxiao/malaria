@@ -9,12 +9,14 @@ schools_hash = [
             { name: 'Winthrop House' },
             { name: 'Cabot House' },
             { name: 'School of Public Health' },
+            { name: 'Adams House' },
         ],
         admins: [
             'willyxiao@gmail.com',
             'dhruvpillai@college.harvard.edu',
             'mienwang@college.harvard.edu',
             'raynorkuang@college.harvard.edu',
+            'xlaguarda@college.harvard.edu',
         ],
     },
     {
