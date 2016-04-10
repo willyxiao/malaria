@@ -16,8 +16,9 @@ class ApiController < ApplicationController
     
     def malaria_fact
         @user = current_user
-        @fact = Malariafact.where(fact_type: Malariafact.fact_types[:text_fact]).limit(1).order("RANDOM ()")
-        Malariafactview.create(user: @user, malariafact: fact, shown: true)
-        render 'malariafact/text_fact'
+        @fact = Malariafact.where(fact_type: Malariafact.fact_types[:text_fact]).limit(1).order("RANDOM ()").take
+        Malariafactview.create(user: @user, malariafact: @fact, shown: true)
+        @text_fact = @fact.content
+        render 'api/malariafact/text_fact'
     end
 end

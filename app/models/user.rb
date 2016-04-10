@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
     has_many :players
     belongs_to :community
+    has_many :malariafactviews
     
     def self.find_registered(id)
         user = self.find(id)
