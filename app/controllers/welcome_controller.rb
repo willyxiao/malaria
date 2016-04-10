@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
     @user = current_user
     @player = @user.players.first
     @game = @player.nil? ? nil : @player.game
-  
+
     @players_left = @game.nil? ? 
       @user.community.users.count : 
       @game.players.to_a.keep_if(&:alive?).length  

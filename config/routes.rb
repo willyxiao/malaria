@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   
   scope '/api' do
     get 'user', to: 'api#user'
+    get 'malaria_fact', to: 'api#malaria_fact'
   end
 
   scope '/admin' do

@@ -1,4 +1,6 @@
 class ApiController < ApplicationController
+    layout false
+    
     def user
         render json: {
             id: current_user.id,
@@ -10,5 +12,12 @@ class ApiController < ApplicationController
             community: current_user.community.name,
             school: current_user.community.school.name,
         }
+    end
+    
+    def malaria_fact
+        @user = current_user
+        @fact = Malariafact.where(fact_type: Malariafact.fact_types[:text_fact]).limit(1).order("RANDOM ()")
+        Malariafactview.create(user: @user, malariafact: fact, shown: true)
+        render 'malariafact/text_fact'
     end
 end

@@ -1,0 +1,10 @@
+.row
+    .small-12.columns
+        #malaria-fact.panel
+%script{:type=>"text/javascript"}
+    :plain
+        $.ready(function() {
+            $.get("/api/malaria_fact", function(data) {
+                $("#malaria-fact").html(data); 
+            });            
+        });
