@@ -23,6 +23,7 @@ schools_hash = [
             'mienwang@college.harvard.edu',
             'raynorkuang@college.harvard.edu',
             'xlaguarda@college.harvard.edu',
+            'hannahsmati@college.harvard.edu',
         ],
     },
     {
