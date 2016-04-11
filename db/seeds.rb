@@ -20,6 +20,7 @@ schools_hash = [
             { name: 'Ivy Yard' },
             { name: 'Elm Yard' },
             { name: 'Crimson Yard' },
+            { name: 'Leverett House' },
         ],
         admins: [
             'willyxiao@gmail.com',
