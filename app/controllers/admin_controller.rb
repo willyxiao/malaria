@@ -80,6 +80,7 @@ class AdminController < ApplicationController
         @games = Game.all
         @players = Player.all
         @users = User.all
+        @views = Malariafactview.all
     end
     
     private 

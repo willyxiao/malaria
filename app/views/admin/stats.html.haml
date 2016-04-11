@@ -6,4 +6,7 @@
         %tr
             %td Users registered
             %td= @users.length
+        %tr
+            %td Number of facts seen
+            %td= @views.length
 = render partial: 'users', locals: { users: @users }
