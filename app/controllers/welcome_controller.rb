@@ -80,6 +80,8 @@ class WelcomeController < ApplicationController
       throw "Player can't kill themself"
     end
       
+    old_target = @player.target
+    
     if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
       throw "Error in killstory"
     end
@@ -100,8 +102,8 @@ class WelcomeController < ApplicationController
       Malariafactview.create(user: @user, malariafact: next_question, shown: false)
     end
     
-    if @player.target.user.confirmed_email
-      WillyMailer.you_just_died(@user, @player.target.user).deliver_now
+    if old_target.user.confirmed_email
+      WillyMailer.you_just_died(@user, old_target).deliver_now
     end
     
     redirect_to root_url
