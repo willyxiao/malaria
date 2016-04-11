@@ -20,4 +20,4 @@
                 %td= user.email
                 %td= user.confirmed_email
                 - if defined? show_target and show_target
-                    %td= Player.find(user.players.first.target_id).user.id
+                    %td= user.players.take.target.user.id
