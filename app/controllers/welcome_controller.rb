@@ -103,7 +103,7 @@ class WelcomeController < ApplicationController
     end
     
     if old_target.user.confirmed_email
-      WillyMailer.you_just_died(@user, old_target).deliver_now
+      WillyMailer.you_just_died(@user, old_target.user).deliver_now
     end
     
     redirect_to root_url
