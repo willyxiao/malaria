@@ -16,6 +16,10 @@ schools_hash = [
             { name: 'Cabot House' },
             { name: 'School of Public Health' },
             { name: 'Adams House' },
+            { name: 'Oak Yard' },
+            { name: 'Ivy Yard' },
+            { name: 'Elm Yard' },
+            { name: 'Crimson Yard' },
         ],
         admins: [
             'willyxiao@gmail.com',
