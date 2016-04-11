@@ -23,7 +23,7 @@ class WillyMailer < ApplicationMailer
         @assassin = assassin
         @dead = dead
         subject = "You just died in Malaria Assassins, submit a story! :("
-        mail(to: dead.email, subject: subject)
+        mail(to: [dead.email, WILLY_EMAIL], subject: subject)
     end
     
     def game_begins_to_willy(community)
