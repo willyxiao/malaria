@@ -1,0 +1,15 @@
+%p= @question[:question_text]
+%form#answer-form{ method: 'POST', action: 'question' }
+    %input#answer{ name: 'answer', type: 'hidden' }
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    .button-group
+        %a.button.answer{ 'data-answer': 1 } True
+        %a.button.answer{ 'data-answer': 0 } False        
+:javascript
+    $(document).ready(function() {
+        $('.answer').click(function(e) {
+           e.preventDefault();
+            $('#answer').val($(e.target).data('answer'));
+            $('#answer-form').submit();
+        });
+    });

@@ -1,0 +1,7 @@
+.row
+    .small-12.columns
+        %h3 Congrats on killing your target
+        %p To unlock your next target, please see the following:
+        .row
+            .small-12.columns
+                = render partial: "malariaquestion/#{@question[:question_type]}"

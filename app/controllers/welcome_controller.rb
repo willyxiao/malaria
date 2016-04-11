@@ -15,14 +15,46 @@ class WelcomeController < ApplicationController
     
     @killstories = Killstory.where(game: @game, is_kill_story: true).order(created_at: :desc)
     @deathstories = Killstory.where(game: @game, is_kill_story: false).order(created_at: :desc)
-    
-    if (not @player.nil?) and @player.dead?
+
+    if @user.malariafactviews.where(shown: false).count > 0
+      fact = @user.malariafactviews.where(shown: false).take.malariafact
+      @question = fact.get_question
+      render 'malariaquestion/base'
+    elsif (not @player.nil?) and @player.dead?
       render 'dead'
     elsif (not @player.nil?) and @player.target == @player
       render 'win'
     end
   end
 
+  def malaria_question_submit
+    @user = current_user
+    view = @user.malariafactviews.where(shown: false).take
+    question = view.malariafact.get_question
+  
+    case question[:question_type]
+    when 'multiple_choice'
+      if question[:answers][params[:answer].to_i] == question[:correct]
+        view.shown = true
+        view.action = 'answer'
+        view.save
+        redirect_to root_url, flash: { message: question[:correct_text] }
+      else
+        redirect_to root_url, flash: { message: question[:incorrect_text] }
+      end
+    when 'binary'
+      if (params[:answer] == '1') == question[:correct]
+        view.shown = true
+        view.action = 'answer'
+        view.save
+        redirect_to root_url, flash: { message: question[:correct_text] }
+      else
+        redirect_to root_url, flash: { message: question[:incorrect_text] }
+      end
+    end
+
+  end
+  
   def death_story
     @user = current_user
     
@@ -54,7 +86,19 @@ class WelcomeController < ApplicationController
     @player.target = @player.target.target
     @player.save!
     
-    # TODO insert malaria related question
+    viewed_question_ids = Malariafactview.
+      joins(:malariafact).
+      where('malariafacts.fact_type' => Malariafact.fact_types[:question]).
+      order('malariafacts.id DESC').
+      select('malariafacts.id')
+    next_question = Malariafact.
+      where(fact_type: Malariafact.fact_types[:question]).
+      where.not(id: viewed_question_ids).
+      order("id ASC").
+      take
+    if not next_question.nil?
+      Malariafactview.create(user: @user, malariafact: next_question, shown: false)
+    end
     
     if @player.target.user.confirmed_email
       WillyMailer.you_just_died(@user, @player.target.user).deliver_now

@@ -1,3 +1,9 @@
+def assert(predicate)
+    if not predicate
+        raise "Assert failure"
+    end
+end
+
 schools_hash = [
     {
         name: 'Harvard', 
@@ -124,3 +130,55 @@ malaria_text_facts.each do |text_fact|
     end
 end
 
+malaria_questions = [
+    {
+        round: 1,
+        question_type: 'multiple_choice',
+        question_text: 'Malaria is transmitted by a mosquito bite, but what causes the disease?',
+        answers: ['A virus', 'A parasite', 'A chemical in mosquito saliva', 'Blood Poisoning'],
+        correct: 'A parasite',
+        correct_text: "Correct! Malaria is caused by Plasmodium parasites. Four Plasmodium species cause malaria in humans: P. falciparum, P. vivax, P. malariae, and P. ovale. P. falciparum is responsible for the most deaths. P. vivax is most prevalent around the world.",
+        incorrect_text: "Incorrect. Try again."
+    },
+    {
+        round: 2,
+        question_type: 'binary',
+        question_text: 'True or false: all mosquitoes transmit malaria.',
+        correct: false,
+        correct_text: 'False: The parasites are spread to people through the bites of infected female Anopheles mosquitoes, called "malaria vectors", which bite mainly between dusk and dawn. ',
+        incorrect_text: 'Incorrect. Try again.',
+    },
+    {
+        round: 3,
+        question_type: 'multiple_choice',
+        question_text: 'Which of the following creatures is the most deadly?',
+        answers: ['Shark', 'Mosquito', 'Snake', 'Human'],
+        correct: 'Mosquito',
+        correct_text: "Correct. Mosquitoes -- despite being the smallest creature on this list -- carry devastating diseases that kill an estimated 725,000 people per year. This far outstrips any other creature on the planet: estimates suggest 50,000 people die from snake bite every year, only 10 die from sharks, and - sadly - around 475,000 by other humans (murders). But that’s still smaller than 725,000.",
+        incorrect_text: "Incorrect. Try again."
+    }, 
+    {
+        round: 5,
+        question_type: 'multiple_choice',
+        question_text: 'The word "malaria" comes from which two medieval Italian words',
+        answers: ['Evil insect', 'Biting jaw', 'Bad air', 'Dirty water'],
+        correct: 'Bad air',
+        correct_text: 'Correct! It comes from mal’aria, the contracted form of the two words mal aria meaning ‘bad air. People originally thought malaria was caused by foul air in marshy areas. We now know that is nonsense and the disease is transmitted by a protozoan parasite that is carried by mosquitoes (in many tropical and subtropical regions that may happen to be marshy!).',
+        incorrect_text: 'Incorrect. Try again.',
+    }
+]
+
+malaria_questions.each do |question|
+    if question[:question_type] == 'multiple_choice'
+        assert(question[:answers].include?(question[:correct]))
+    end
+    
+    assert(["multiple_choice", "fb_task", "binary"].include?(question[:question_type]))
+    
+    question = question.values
+    
+    if not Malariafact.where(fact_type: Malariafact.fact_types[:question]).map{ |q| q.content[0] }.include?(question[0])
+        puts "Inputting question: #{question[0]}"
+        Malariafact.create(fact_type: :question, content: question)
+    end
+end
