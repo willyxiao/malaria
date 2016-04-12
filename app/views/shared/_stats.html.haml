@@ -1,33 +1,33 @@
 .row
     .small-12.columns
         %h3.subheader Here are some statistics across all games being played.
-        .row.text-center
-            .small-2.columns
+        %ul.small-block-grid-2.large-block-grid-6.text-center
+            %li 
                 .fa.fa-user.fa-border.fa-5x
                 %p
                     = stats[:users]
                     users signed up
-            .small-2.columns
+            %li
                 .fa.fa-child.fa-border.fa-5x
                 %p
                     = stats[:active]
                     actively playing
-            .small-2.columns
+            %li
                 .fa.fa-heartbeat.fa-border.fa-5x
                 %p
                     = stats[:alive]
                     still alive
-            .small-2.columns
+            %li
                 .fa.fa-users.fa-border.fa-5x                
                 %p
                     = stats[:communities]
                     communities
-            .small-2.columns
+            %li
                 .fa.fa-eye.fa-border.fa-5x                
                 %p
                     = stats[:malariafactviews]
                     facts seen
-            .small-2.columns
+            %li
                 .fa.fa-question.fa-border.fa-5x
                 %p
                     = stats[:questions]
