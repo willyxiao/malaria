@@ -97,11 +97,12 @@ class WelcomeController < ApplicationController
     @player.target = @player.target.target
     @player.save!
     
-    viewed_question_ids = Malariafactview.
+    viewed_question_ids = @user.
+      malariafactviews.
       joins(:malariafact).
       where('malariafacts.fact_type' => Malariafact.fact_types[:question]).
-      order('malariafacts.id DESC').
-      select('malariafacts.id')
+      to_a.
+      map{ |x| x.malariafact.id }
     next_question = Malariafact.
       where(fact_type: Malariafact.fact_types[:question]).
       where.not(id: viewed_question_ids).
