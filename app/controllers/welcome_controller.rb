@@ -9,6 +9,15 @@ class WelcomeController < ApplicationController
     @player = @user.players.first
     @game = @player.nil? ? nil : @player.game
 
+    @stats = {
+      users: User.count,
+      active: Player.count,
+      alive: Player.count - Killstory.where(is_kill_story: true).count,
+      communities: Community.count - 2, # there are two test houses
+      malariafactviews: Malariafactview.count,
+      questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
+    }
+    
     @players_left = @game.nil? ? 
       @user.community.users.count : 
       @game.players.to_a.keep_if(&:alive?).length  

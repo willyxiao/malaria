@@ -1,0 +1,40 @@
+.row
+    .small-12.columns
+        %h3 Global stats:
+        .row.text-center
+            //   users: User.count,
+            //   active: Player.count,
+            //   alive: Player.count - Killstory.where(is_kill_story: true).count,
+            //   communities: Community.count - 2, # there are two test houses
+            //   malariafactviews: Malariafactview.count,
+            //   questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
+            .small-2.columns
+                .fa.fa-user.fa-border.fa-5x
+                %p
+                    = stats[:users]
+                    users signed up
+            .small-2.columns
+                .fa.fa-child.fa-border.fa-5x
+                %p
+                    = stats[:active]
+                    actively playing
+            .small-2.columns
+                .fa.fa-heartbeat.fa-border.fa-5x
+                %p
+                    = stats[:alive]
+                    still alive
+            .small-2.columns
+                .fa.fa-users.fa-border.fa-5x                
+                %p
+                    = stats[:communities]
+                    communities
+            .small-2.columns
+                .fa.fa-eye.fa-border.fa-5x                
+                %p
+                    = stats[:malariafactviews]
+                    facts seen
+            .small-2.columns
+                .fa.fa-question.fa-border.fa-5x
+                %p
+                    = stats[:questions]
+                    questions answered

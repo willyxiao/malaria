@@ -11,6 +11,7 @@
 .row
     .small-12.columns
         = render partial: 'shared/malariafactloader'
+        = render partial: 'shared/stats', locals: { stats: @stats }
         - if @game.nil?
             .row
                 .small-12.columns
