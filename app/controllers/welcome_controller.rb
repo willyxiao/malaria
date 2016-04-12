@@ -191,6 +191,8 @@ class WelcomeController < ApplicationController
       render 'custom_rules/winthrop'
     elsif current_user.community.name == 'Eliot House'
       render 'custom_rules/eliot'
+    elsif ["Oak Yard", "Ivy Yard", "Elm Yard", "Crimson Yard"].include?(current_user.community.name)
+      render 'custom_rules/freshman_yards'
     end
   end
 

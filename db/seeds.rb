@@ -29,6 +29,12 @@ schools_hash = [
             'raynorkuang@college.harvard.edu',
             'xlaguarda@college.harvard.edu',
             'hannahsmati@college.harvard.edu',
+            'julianarodriguez@college.harvard.edu',
+            'cooperbryan@college.harvard.edu',
+            'rcuccia@college.harvard.edu',
+            'deschler.jack@gmail.com',
+            'jamesbrandonjones@college.harvard.edu',
+            'alexandramurray@college.harvard.edu',
         ],
     },
     {
@@ -66,9 +72,10 @@ schools_hash = [
             { name: 'TASC' },
             { name: 'Phi Sigma Rho' },
             { name: 'MedLife' },
+
         ],
         admins: [
-            'thsu2012@ucla.edu',
+            'thsu2012@ucla.edu', 'yaochang@ucla.edu', 'irg@ucla.edu',
         ],
     },
     {
