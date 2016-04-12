@@ -11,6 +11,6 @@
                         %label Kill Story:
                         %textarea#kill-story{ name: 'deathstory', placeholder: "As I was eating my cereal...", autofocus: 'true' }
                         %input.button.expand{ type: 'submit' }
-
+        = render partial: 'shared/stats', locals: { stats: @stats }
         = render partial: 'shared/playersleft', locals: { players_left: @players_left }        
         = render partial: 'shared/killstories', locals: { killstories: @killstories, deathstories: @deathstories }
