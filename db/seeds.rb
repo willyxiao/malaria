@@ -75,7 +75,7 @@ schools_hash = [
 
         ],
         admins: [
-            'thsu2012@ucla.edu', 'yaochang@ucla.edu', 'irg@ucla.edu',
+            'thsu2012@ucla.edu', 'yaochang@ucla.edu', 'irg@ucla.edu', 'slee931@ucla.edu',
         ],
     },
     {
