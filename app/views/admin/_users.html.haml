@@ -11,8 +11,12 @@
                 %th Target ID
     %tbody
         - users.each do |user|
+
             %tr
-                %td= user.community.name
+                - if user.commuity.nil?
+                    %td No Community
+                - else
+                    %td= user.community.name
                 %td= user.id
                 %td
                     = image_tag user.image
