@@ -64,7 +64,8 @@ schools_hash = [
         communities: [ 
             { name: 'MEMO' },
             { name: 'TASC' },
-            { name: 'Phi Sigma Rho' }
+            { name: 'Phi Sigma Rho' },
+            { name: 'MedLife' },
         ],
         admins: [
             'thsu2012@ucla.edu',
