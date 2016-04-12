@@ -136,6 +136,52 @@ malaria_text_facts.each do |text_fact|
     end
 end
 
+malaria_narratives = [
+    {
+        name: "Coumba Makalou",
+        date: "June 5, 2007",
+        location: "Mali",
+        link: "http://www.nothingbutnets.net/blogs/what-it-feels-like-to-have-malaria.html",
+        quote: "lightning going through my legs, and then spreading through my body and in my head. Probably the worst headache, body aches, and chills you could possibly imagine. It felt like I was being stung repeatedly by an electric shock gun and could barely control my movements. The pain was so intense; I actually believed I was dying",
+    },
+    {
+        name: "Hadia Ali",
+        date: "November 11, 2014",
+        location: "Comoros",
+        link: "http://www.cbsnews.com/news/chinas-test-malaria-drug-artequick-experiment-on-population-of-comoros/",
+        quote: "As a mom, malaria is a constant fear. When my baby looks tired, does not want to eat, or behaves strangely, I worry it is malaria. The disease is a nightmare in our lives, especially because I don't have money to take my child to the hospital.... We pray to God that this drug will work, because times are hard and malaria is affecting our families more and more.",
+    },
+    {
+        name: "Romy Rook",
+        date: "2012",
+        location: "UK/Uganda",
+        link: "https://www.malarianomore.org.uk/real-life-stories/romy-rook",
+        quote: "Two and half years on, I am well but still feeling the effects and will continue to. Malaria has left my lungs and memory permanently damaged. My eyesight has also been weakened, I am extra sensitive to some lights and have some hearing loss. But at least I have access to the help and support I need from specialists and on-going treatment.",
+    },
+    {
+        name: "Kristine Silvestri",
+        date: "June 1, 2010",
+        location: "USA/Ghana",
+        link: "http://kristof.blogs.nytimes.com/2010/06/01/malaria-a-students-firsthand-account",
+        quote: "Days later, when I went for my check-up at the private clinic, my Ghanaian doctor said I was “very lucky.” Lucky to be American, that is. Had I grown up battling other diseases, my body might not have had the strength to beat malaria. At 20 years of age, I was well-fed and athletic, a notable advantage over many Africans my same age with already-compromised immune systems. Through my college courses in international development, I’d become more conscious of the privilege of being white, middle-class, and American. Now I had proof; I was alive because of that privilege.",
+    },
+    {
+        name: "Adou Ouattara",
+        date: "June 9, 2015",
+        location: "Cote d’Ivoire/Spain",
+        link: "http://www.upi.com/Top_News/World-News/2015/06/09/8-year-old-boy-smuggled-to-Spain-in-suitcase-reunites-with-mother/1021433848535/",
+        quote: "Adou, an 8-year boy from Ivory Coast, contracted malaria but could not be treated in his country. His father attempted to smuggle him to Spain, where his mother lives, in a carry-on suitcase to receive treatment. Transport authorities found him when the bag went through the x-ray machine. Not only was the boy arrested (while suffering from malaria), but this story highlights the issues of lack of access to treatment and lack of financial means to obtain treatment or leave the country. Bearing witness to the suffering of their loved ones, family members are often driven to take desperate measures."
+    }
+]
+
+malaria_narratives.each do |narrative|
+    narrative = narrative.values
+    if not Malariafact.where(fact_type: Malariafact.fact_types[:text_narrative]).map{ |f| f.content[0] }.include?(narrative[0])
+        puts "Inputting fact: #{narrative[0]}"
+        Malariafact.create(fact_type: :text_narrative, content: narrative)
+    end
+end
+
 malaria_questions = [
     {
         round: 1,
@@ -171,6 +217,42 @@ malaria_questions = [
         correct: 'Bad air',
         correct_text: 'Correct! It comes from mal’aria, the contracted form of the two words mal aria meaning ‘bad air. People originally thought malaria was caused by foul air in marshy areas. We now know that is nonsense and the disease is transmitted by a protozoan parasite that is carried by mosquitoes (in many tropical and subtropical regions that may happen to be marshy!).',
         incorrect_text: 'Incorrect. Try again.',
+    },
+    {
+        round: 6,
+        question_type: 'multiple_choice',
+        question_text: 'How many people die each day from malaria?',
+        answers: ['16', '100', '500', '1,600'],
+        correct: '1,600',
+        correct_text: 'Correct. According to the WHO, an estimated 1,600 people die each day from malaria.',
+        incorrect_text: 'Incorrect. Try again.',
+    },
+    {
+        round: 7,
+        question_type: 'multiple_choice',
+        question_text: 'Which of the following U.S. presidents did NOT contract malaria during his lifetime?',
+        answers: ['George Washington', 'Theodore Roosevelt', 'John F. Kennedy', 'Richard Nixon'],
+        correct: 'Richard Nixon',
+        correct_text: ' Correct. Richard Nixon is the only one of these four to have not suffered from malaria. George Washington, Theodore Roosevelt, and John F. Kennedy all had malaria.',
+        incorrect_text: 'Incorrect (this person had malaria!). Try again.',
+    },
+    {
+        round: 8,
+        question_type: 'multiple_choice',
+        question_text: 'Once malaria parasites enter a person’s blood, which organ do they travel to?',
+        answers: ['Liver', 'Stomach', 'Heart', 'Kidneys'],
+        correct: 'Liver',
+        correct_text: 'Correct. When a human is bitten by a malaria vector, Plasmodium parasites from the mosquito’s salivary glands enter the human’s bloodstream and must travel to the liver within 30 minutes to stay alive. From there, they grow and multiply and infect human red blood cells (RBCs). In just a few hours, the parasites can suck as much as ¼ lb. of hemoglobin from the RBCs of an infected person. This causes severe anemia.',
+        incorrect_text: 'No no no no no.',
+    },
+    {
+        round: 9,
+        question_type: 'multiple_choice',
+        question_text: 'How soon after infection does a person begin to feel ill?',
+        answers: ['2 days', '4 days', '6 weeks', 'None of the above'],
+        correct: 'None of the above',
+        correct_text: 'For most people, symptoms begin 10 days to four weeks after infection, although they may exhibit symptoms as early as 8 days or as late as 1 year.',
+        incorrect_text: 'Wrong. Try again.',
     }
 ]
 
