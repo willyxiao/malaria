@@ -21,7 +21,7 @@
                 %td
                     = image_tag user.image
                 %td= user.name
-                %td= user.email
+                %td= user.email.to_s.force_encoding("UTF-8")
                 %td= user.confirmed_email
                 - if defined? show_target and show_target
                     %td= user.players.take.target.user.id
