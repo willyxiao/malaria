@@ -5,8 +5,10 @@ class WelcomeController < ApplicationController
   before_action :require_confirmed_email, only: [:kill]
   
   def index
-    render 'pause'
-    return
+    if session[:user_id] != 1
+      render 'pause'
+      return
+    end
     
     @user = current_user
     @player = @user.players.first
@@ -94,7 +96,7 @@ class WelcomeController < ApplicationController
     if @player.target == @player
       throw "Player can't kill themself"
     end
-      
+  
     old_target = @player.target
     
     if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
