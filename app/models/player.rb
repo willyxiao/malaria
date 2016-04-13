@@ -3,7 +3,7 @@ class Player < ActiveRecord::Base
     belongs_to :user
     belongs_to :community
     has_one :target, class_name: "Player", foreign_key: "target_id"
-    # belongs_to :assassin, class_name: "Player"
+    # belongs_to :target, class_name: "Player"
     
     has_many :killstories
 
@@ -17,13 +17,6 @@ class Player < ActiveRecord::Base
     
     def alive?
         not self.dead?
-    end
-    
-    def kill_player_debug
-        Killstory.submit_kill(self.assassin, self, true, "Debug")
-        a = self.assassin
-        a.target = self.target
-        a.save
     end
     
     def paused_time?
