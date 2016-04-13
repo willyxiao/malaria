@@ -30,7 +30,7 @@
 .row.text-center
     .small-4.columns
         %img{ src: "https://graph.facebook.com/v2.5/#{@user.uid}/picture?type=large" }
-        %p= "#{@user.name} (You)"
+        %p= "#{@user.name.to_s.force_encoding('UTF-8')} (You)"
     .small-4.columns
         .row
             .small-12
