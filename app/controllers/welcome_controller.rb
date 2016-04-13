@@ -5,8 +5,8 @@ class WelcomeController < ApplicationController
   before_action :require_confirmed_email, only: [:kill]
   
   def index
-    render 'pause'
-    return
+    # render 'pause'
+    # return
     
     @user = current_user
     @player = @user.players.first
