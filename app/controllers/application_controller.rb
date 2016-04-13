@@ -6,11 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    if session[:user_id] == 1
-      @current_user ||= User.find(236)
-    else
-      @current_user ||= User.find_registered(session[:user_id]) if session[:user_id]
-    end
+    @current_user ||= User.find_registered(session[:user_id]) if session[:user_id]
   end
   
   def logged_in?
