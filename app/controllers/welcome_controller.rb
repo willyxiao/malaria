@@ -80,6 +80,9 @@ class WelcomeController < ApplicationController
     if params[:killstory].length == 0
       redirect_to root_url, flash: { message: "You have to submit a killstory" }
       return nil
+    elsif current_user.players.take.nil?
+      redirect_to root_url, flash: { message: "Your game hasn't started yet!" }
+      return nil
     end
     
     @user = current_user
