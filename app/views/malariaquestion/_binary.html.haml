@@ -1,4 +1,4 @@
-%p= @question[:question_text]
+%p= @question[:question_text].to_s.force_encoding("UTF-8")
 %form#answer-form{ method: 'POST', action: 'question' }
     %input#answer{ name: 'answer', type: 'hidden' }
     = hidden_field_tag :authenticity_token, form_authenticity_token
