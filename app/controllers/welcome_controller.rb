@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
   before_action :require_confirmed_email, only: [:kill]
   
   def index
-    if session[:user_id] != 1
+    if current_user.id != 1
       render 'pause'
       return
     end
@@ -98,6 +98,10 @@ class WelcomeController < ApplicationController
     end
   
     old_target = @player.target
+    
+    if Killstory.where(killer: @player).count > 0 and (Time.now - Killstory.where(killer: @player).order('id DESC').first.created_at) / 60 < 3
+      redirect_to root_url, flash: { message: "You submitted your kill a little too soon, wait 3 minutes please!" }
+    end
     
     if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
       throw "Error in killstory"

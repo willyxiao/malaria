@@ -10,6 +10,8 @@ class Killstory < ActiveRecord::Base
             throw "Either your killer or the dead person is already dead, no new killstories"
         elsif self.where(killer: killer, dead: dead, is_kill_story: false).count > 0
             throw "death story already submitted"
+        elsif self.where(story: story).count > 0
+            throw "Sorry, this story has been submitted, can't submit again"
         end
         
         self.create!(game: killer.game, killer: killer, dead: dead, is_kill_story: is_kill_story, story: story)
