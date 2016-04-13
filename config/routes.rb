@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post 'death_story', to: 'welcome#death_story'
   post 'question', to: 'welcome#malaria_question_submit'
   
+  get 'users_list', to: 'welcome#users_list', as: 'users_list'
+  
   scope '/api' do
     get 'user', to: 'api#user'
     get 'malaria_fact', to: 'api#malaria_fact'

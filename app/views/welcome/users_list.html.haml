@@ -1,0 +1,15 @@
+= render partial: 'shared/malariafactloader'
+%table
+    %thead
+        %tr
+            %th Picture
+            %th Name
+            %th Email
+    %tbody
+        - @users.each do |user|
+
+            %tr
+                %td
+                    = image_tag user.image
+                %td= user.name.to_s.force_encoding("UTF-8")
+                %td= user.email.to_s.force_encoding("UTF-8")

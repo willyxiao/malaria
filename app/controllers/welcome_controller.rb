@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
-  before_action :require_logged_in, only: [:index, :kill, :email]
+  before_action :require_logged_in, only: [:index, :kill, :email, :death_story, :malaria_question_submit, :users_list]
   before_action :require_email, only: [:index]
   before_action :require_confirmed_email, only: [:kill]
   
@@ -199,4 +199,8 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def users_list
+    @user = current_user
+    @users = @user.community.users.order("RANDOM() ")
+  end
 end

@@ -1,5 +1,6 @@
 class ApiController < ApplicationController
     layout false
+    before_action :require_logged_in
     
     def user
         render json: {
