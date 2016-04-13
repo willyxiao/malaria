@@ -39,7 +39,7 @@
         .small-12.columns
           .callout.alert
             %h5 Warning
-            %p= flash[:message]
+            %p= flash[:message].to_s.force_encoding("UTF-8")
     .row
       .small-12.columns
         = yield
