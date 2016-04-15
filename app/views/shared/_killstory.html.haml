@@ -6,4 +6,4 @@
         - stories.each do |story|
             %tr
                 %td= story.created_at
-                %td= story.story
+                %td= story.story.to_s.force_encoding('UTF-8')
