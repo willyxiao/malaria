@@ -77,10 +77,23 @@ class AdminController < ApplicationController
         if @admin.email != 'willyxiao@gmail.com'
             redirect_to admin_url
         end
-        @games = Game.all
-        @players = Player.all
+        
         @users = User.all
-        @views = Malariafactview.all
+        @communities = Community.all.order('school_id DESC').map do |community|
+            {
+                school: community.school.name,
+                name: community.name,
+                registered: User.where(community: community).count,
+                game_started: (not community.game.nil?),
+                players: Player.where(community: community).count,
+                deaths: community.game.nil? ? 0 : Killstory.where(game: community.game, is_kill_story: true).count,
+            }
+        end
+        
+        # @games = Game.all
+        # @players = Player.all
+        # @users = User.all
+        # @views = Malariafactview.all
     end
     
     private 

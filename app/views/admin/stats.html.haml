@@ -1,12 +1,17 @@
 %table
+    %thead
+        %tr
+            %th School
+            %th Name
+            %th Registered
+            %th Players
+            %th Deaths
     %tbody
-        %tr
-            %td Games started
-            %td= @games.length
-        %tr
-            %td Users registered
-            %td= @users.length
-        %tr
-            %td Number of facts seen
-            %td= @views.length
+        - @communities.each do |community|
+            %tr
+                %td= community[:school]
+                %td= community[:name]
+                %td= community[:registered]
+                %td= community[:players]
+                %td= community[:deaths]
 = render partial: 'users', locals: { users: @users }
