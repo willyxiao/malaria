@@ -21,6 +21,7 @@ schools_hash = [
             { name: 'Elm Yard' },
             { name: 'Crimson Yard' },
             { name: 'Leverett House' },
+            { name: 'Mather House' },
         ],
         admins: [
             'willyxiao@gmail.com',
@@ -35,6 +36,7 @@ schools_hash = [
             'deschler.jack@gmail.com',
             'jamesbrandonjones@college.harvard.edu',
             'alexandramurray@college.harvard.edu',
+            'benanandappa@college.harvard.edu',
         ],
     },
     {
