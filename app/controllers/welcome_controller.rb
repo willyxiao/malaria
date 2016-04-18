@@ -5,6 +5,9 @@ class WelcomeController < ApplicationController
   before_action :require_confirmed_email, only: [:kill]
   
   def index
+    render 'pause'
+    return
+    
     @user = current_user
     @player = @user.players.first
     @game = @player.nil? ? nil : @player.game
@@ -77,6 +80,9 @@ class WelcomeController < ApplicationController
   end
 
   def kill
+    render 'pause'
+    return
+    
     if params[:killstory].length == 0
       redirect_to root_url, flash: { message: "You have to submit a killstory" }
       return nil

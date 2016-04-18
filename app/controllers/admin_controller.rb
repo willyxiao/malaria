@@ -87,14 +87,8 @@ class AdminController < ApplicationController
                 game_started: (not community.game.nil?),
                 players: Player.where(community: community).count,
                 deaths: community.game.nil? ? 0 : Player.where(target_id: nil).count,
-                # deaths: community.game.nil? ? 0 : Killstory.where(game: community.game, is_kill_story: true).count,
             }
         end
-        
-        # @games = Game.all
-        # @players = Player.all
-        # @users = User.all
-        # @views = Malariafactview.all
     end
     
     private 
