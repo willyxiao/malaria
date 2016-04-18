@@ -3,8 +3,12 @@ class Game < ActiveRecord::Base
     belongs_to :community
     
     def shuffle_targets
-        players = self.players.where.not(target_id: nil).shuffle
-        
+        if Killstory.where(game: self).count == 0
+            players = self.players.shuffle
+        else
+            players = self.players.where.not(target_id: nil).shuffle 
+        end
+
         players[0].target = players[players.length - 1]
         players[0].save!
         
