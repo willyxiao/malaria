@@ -86,7 +86,8 @@ class AdminController < ApplicationController
                 registered: User.where(community: community).count,
                 game_started: (not community.game.nil?),
                 players: Player.where(community: community).count,
-                deaths: community.game.nil? ? 0 : Killstory.where(game: community.game, is_kill_story: true).count,
+                deaths: community.game.nil? ? 0 : Player.where(target_id: nil).count,
+                # deaths: community.game.nil? ? 0 : Killstory.where(game: community.game, is_kill_story: true).count,
             }
         end
         

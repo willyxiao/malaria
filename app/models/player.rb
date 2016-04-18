@@ -11,7 +11,7 @@ class Player < ActiveRecord::Base
     end
     
     def dead?
-        (Killstory.where(game: self.game, dead_id: self.id).count > 0) 
+        self.target.nil?
     end
     
     def alive?

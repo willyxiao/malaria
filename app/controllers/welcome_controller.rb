@@ -103,6 +103,8 @@ class WelcomeController < ApplicationController
     end
     @player.target = @player.target.target
     @player.save!
+    old_target.target_id = nil
+    old_target.save!
     
     viewed_question_ids = @user.
       malariafactviews.

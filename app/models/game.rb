@@ -16,28 +16,29 @@ class Game < ActiveRecord::Base
         end
     end
     
-    def temporarily_fix
-        SiteEvent.create(event: "Fixing target_id for Game #{self.id} at #{self.community.name}")
-        
-        first_player = self.players.where.not(target_id: nil).first
-        first_player_id = first_player.id
-        target = first_player
-        assassin = Player.find(first_player.target_id)
-        
-        next_assassin_id = assassin.target_id
-        puts "Updating #{assassin.id} target to #{target.id}"
-        assassin.target_id = target.id
-        assassin.save
-        target = assassin
-        assassin = Player.find(next_assassin_id)
-        
-        while target.id != first_player_id
-            next_assassin_id = assassin.target_id
-            puts "Updating #{assassin.id} target to #{target.id}"
-            assassin.target_id = target.id
-            assassin.save
-            target = assassin
-            assassin = Player.find(next_assassin_id)
+    def fix_killstories
+        # fix representation of death in the database
+        SiteEvent.create(event: "Fixing target_id for deads in game #{self.id}")
+        Killstory.where(game: self).all.each do |killstory|
+            player = Player.find(killstory.dead_id)
+            player.target_id = nil
+            player.save
+        end
+    end
+    
+    def fix_take_no_kill
+        self.fix_killstories()
+    
+        players = self.players.where.not(target_id: nil).all
+        players.each do |player|
+            if Killstory.where(killer_id: player.id).count == 0
+                assassin = player.assassin
+                assassin.target = player.target
+                player.target_id = nil
+                assassin.save
+                player.save
+                SiteEvent.create(event: "Setting #{assassin.id} target to #{assassin.target_id} because #{player.id} made no kills")
+            end
         end
     end
     
