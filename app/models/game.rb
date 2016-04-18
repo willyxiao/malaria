@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
     belongs_to :community
     
     def shuffle_targets
-        players = self.players.shuffle
+        players = self.players.where.not(target_id: nil).shuffle
         
         players[0].target = players[players.length - 1]
         players[0].save!
@@ -28,18 +28,19 @@ class Game < ActiveRecord::Base
     
     def fix_take_no_kill
         self.fix_killstories()
-    
-        players = self.players.where.not(target_id: nil).all
-        players.each do |player|
-            if Killstory.where(killer_id: player.id).count == 0
-                assassin = player.assassin
-                assassin.target = player.target
-                player.target_id = nil
-                assassin.save
-                player.save
-                SiteEvent.create(event: "Setting #{assassin.id} target to #{assassin.target_id} because #{player.id} made no kills")
-            end
-        end
+
+        # this needs to be fixed!    
+        # players = self.players.where.not(target_id: nil).all
+        # players.each do |player|
+        #     if Killstory.where(killer_id: player.id).count == 0
+        #         assassin = player.assassin
+        #         assassin.target = player.target
+        #         player.target_id = nil
+        #         assassin.save
+        #         player.save
+        #         SiteEvent.create(event: "Setting #{assassin.id} target to #{assassin.target_id} because #{player.id} made no kills")
+        #     end
+        # end
     end
     
     def self.create_game(community, time_started=Time.new(2016, 04, 11, 3, 0, 0))
