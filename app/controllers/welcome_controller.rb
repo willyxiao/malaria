@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
     @stats = {
       users: User.count,
       active: Player.count,
-      alive: Player.count - Killstory.where(is_kill_story: true).count,
+      alive: Player.where.not(target_id: nil).count,
       communities: Community.count - 2, # there are two test houses
       malariafactviews: Malariafactview.count,
       questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
