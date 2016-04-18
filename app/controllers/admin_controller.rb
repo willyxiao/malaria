@@ -62,7 +62,7 @@ class AdminController < ApplicationController
     end
     
     def start_game
-        if not admin_controls_community?(params[:community_id], get_admin)
+        if (not super_admin?) and (not admin_controls_community?(params[:community_id], get_admin))
             raise "Error admin not tied to community"
         end
         community = Community.find(params[:community_id])
@@ -106,6 +106,10 @@ class AdminController < ApplicationController
         if not session[:admin_id]
             redirect_to :admin_login
         end
+    end
+    
+    def super_admin?
+        (get_admin).email == 'willyxiao@gmail.com'
     end
     
     def admin_controls_community?(community_id, admin)
