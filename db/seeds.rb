@@ -86,6 +86,13 @@ schools_hash = [
             { name: 'UG Game' }
         ],
         admins: ['anamfija@gmail.com'],
+    },
+    {
+        name: 'Wellesley',
+        communities: [
+            { name: 'Wellesley for Public Health' }
+        ],
+        admins: ['njahan@wellesley.edu']
     }
 ]
 
