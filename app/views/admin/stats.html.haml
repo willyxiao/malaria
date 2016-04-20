@@ -1,19 +1,24 @@
-%table
-    %thead
-        %tr
-            %th School
-            %th Name
-            %th Registered
-            %th Players
-            %th Deaths
-            %th Still Alive
-    %tbody
-        - @communities.each do |community|
-            %tr
-                %td= community[:school]
-                %td= community[:name]
-                %td= community[:registered]
-                %td= community[:players]
-                %td= community[:deaths]
-                %td= community[:players].to_i - community[:deaths].to_i
+.row
+    .small-12.columns
+        = render partial: 'shared/stats', locals: { stats: @stats }
+.row
+    .small-12.columns
+        %table
+            %thead
+                %tr
+                    %th School
+                    %th Name
+                    %th Registered
+                    %th Players
+                    %th Deaths
+                    %th Still Alive
+            %tbody
+                - @communities.each do |community|
+                    %tr
+                        %td= community[:school]
+                        %td= community[:name]
+                        %td= community[:registered]
+                        %td= community[:players]
+                        %td= community[:deaths]
+                        %td= community[:players].to_i - community[:deaths].to_i
 = render partial: 'users', locals: { users: @users }

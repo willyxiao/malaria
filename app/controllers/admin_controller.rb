@@ -77,6 +77,15 @@ class AdminController < ApplicationController
         if @admin.email != 'willyxiao@gmail.com'
             redirect_to admin_url
         end
+
+        @stats = {
+          users: User.count,
+          active: Player.count,
+          alive: Player.where.not(target_id: nil).count,
+          communities: Community.count - 2, # there are two test houses
+          malariafactviews: Malariafactview.count,
+          questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
+        }
         
         @users = User.all
         @communities = Community.all.order('school_id DESC').map do |community|
