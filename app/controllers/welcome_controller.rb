@@ -196,6 +196,8 @@ class WelcomeController < ApplicationController
   def rules
     if current_user.nil?
       # pass
+    elsif current_user.community.name == 'Cabot House'
+      render 'custom_rules/cabot'
     elsif current_user.community.name == 'Leverett House'
       render 'custom_rules/leverett'
     elsif current_user.community.name == 'Adams House'
