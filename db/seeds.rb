@@ -38,6 +38,7 @@ schools_hash = [
             'alexandramurray@college.harvard.edu',
             'benanandappa@college.harvard.edu',
             'zchauvin@college.harvard.edu',
+            'jessicakim@college.harvard.edu',
         ],
     },
     {
