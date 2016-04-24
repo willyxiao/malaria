@@ -99,7 +99,7 @@ class AdminController < ApplicationController
                 registered: User.where(community: community).count,
                 game_started: game_started,
                 game_start: game_started ? time_str(community.game.created_at) : 'N/A',
-                last_kill: (game_started and deaths > 0) ? time_ago_in_words(Killstory.where(game_id: community.game.id, is_kill_story: true).order("created_at DESC").first.created_at) : 'N/A',
+                last_kill: (game_started and deaths > 0) ? (Killstory.where(game_id: community.game.id, is_kill_story: true).order("created_at DESC").first.created_at) : 'N/A',
                 players: Player.where(community: community).count,
                 deaths: deaths,
             }
