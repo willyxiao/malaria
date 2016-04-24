@@ -10,8 +10,10 @@
                     %th Name
                     %th Registered
                     %th Players
+                    %th Game Start
                     %th Deaths
                     %th Still Alive
+                    %th Last Kill
             %tbody
                 - @communities.each do |community|
                     %tr
@@ -19,6 +21,8 @@
                         %td= community[:name]
                         %td= community[:registered]
                         %td= community[:players]
-                        %td= community[:deaths]
+                        %td= community[:game_start]
+                        %td{ style: "color: red" }= "-#{community[:deaths]}"
                         %td= community[:players].to_i - community[:deaths].to_i
+                        %td= community[:last_kill]
 = render partial: 'users', locals: { users: @users }

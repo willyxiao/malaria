@@ -87,15 +87,21 @@ class AdminController < ApplicationController
           questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
         }
         
+        @last_kill = Killstory.where(is_kill_story: true).order('created_at DESC').first
+        
         @users = User.all
         @communities = Community.all.order('school_id DESC').map do |community|
+            game_started = (not community.game.nil?)
+            deaths = game_started ? 0 : Player.where(community: community, target_id: nil).count
             {
                 school: community.school.name,
                 name: community.name,
                 registered: User.where(community: community).count,
-                game_started: (not community.game.nil?),
+                game_started: game_started,
+                game_start: game_started ? time_str(community.game.created_at) : 'N/A',
+                last_kill: (game_started and deaths > 0) ? time_str(Killstory.where(game_id: community.game.id).order("created_at DESC").first) : 'N/A',
                 players: Player.where(community: community).count,
-                deaths: community.game.nil? ? 0 : Player.where(community: community, target_id: nil).count,
+                deaths: deaths,
             }
         end
     end
@@ -118,5 +124,9 @@ class AdminController < ApplicationController
     
     def admin_controls_community?(community_id, admin)
         Community.find(community_id).school.id == admin.school.id
+    end
+    
+    def time_str(time,zone='EST')
+        time.in_time_zone(zone).strftime("%m/%d/%y %H:%M:%S")
     end
 end

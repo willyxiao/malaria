@@ -2,6 +2,7 @@ class Community < ActiveRecord::Base
     has_one :game
     belongs_to :school
     has_many :users
+    has_many :players
 
     def create_game(duplicate = false)
         if !self.game.nil?
