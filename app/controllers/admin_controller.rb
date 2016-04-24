@@ -92,7 +92,7 @@ class AdminController < ApplicationController
         @users = User.all
         @communities = Community.all.order('school_id DESC').map do |community|
             game_started = (not community.game.nil?)
-            deaths = game_started ? 0 : Player.where(community: community, target_id: nil).count
+            deaths = game_started ? Player.where(community: community, target_id: nil).count : 0
             {
                 school: community.school.name,
                 name: community.name,
