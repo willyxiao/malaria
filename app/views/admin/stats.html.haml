@@ -24,5 +24,6 @@
                         %td{ style: "color: red" }= "-#{community[:deaths]}"
                         %td= community[:players].to_i - community[:deaths].to_i
                         %td= community[:game_start]
-                        %td= time_ago_in_words(community[:last_kill])
+                        - if not community[:last_kill].nil? 
+                            %td= time_ago_in_words(community[:last_kill])
 = render partial: 'users', locals: { users: @users }
