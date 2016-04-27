@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'email', to: 'welcome#email'
   post 'email', to: 'welcome#email_submit'
   get 'email/:hash', to: 'welcome#email_confirm'
+  get 'dead_screen', to: 'welcome#dead_screen', as: 'dead'
   post 'kill', to: 'welcome#kill'
   post 'death_story', to: 'welcome#death_story'
   post 'question', to: 'welcome#malaria_question_submit'

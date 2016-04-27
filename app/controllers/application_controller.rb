@@ -42,6 +42,17 @@ class ApplicationController < ActionController::Base
     (not current_user.email.nil?) and current_user.confirmed_email
   end
   
+  def get_stats
+    {
+        users: User.count,
+        active: Player.count,
+        alive: Player.where.not(target_id: nil).count,
+        communities: Community.count - 2, # there are two test houses
+        malariafactviews: Malariafactview.count,
+        questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
+      }
+  end
+  
   helper_method :current_user
   helper_method :require_logged_in
   helper_method :require_logged_out
