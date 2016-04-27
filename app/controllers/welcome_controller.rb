@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
-  before_action :require_logged_in, only: [:index, :kill, :email, :death_story, :malaria_question_submit, :users_list, :dead_screen]
+  before_action :require_logged_in, only: [:index, :kill, :email, :death_story, :malaria_question_submit, :users_list]
   before_action :require_email, only: [:index]
   before_action :require_confirmed_email, only: [:kill]
   
@@ -9,7 +9,14 @@ class WelcomeController < ApplicationController
     @player = @user.players.first
     @game = @player.nil? ? nil : @player.game
 
-    @stats = get_stats()
+    @stats = {
+      users: User.count,
+      active: Player.count,
+      alive: Player.where.not(target_id: nil).count,
+      communities: Community.count - 2, # there are two test houses
+      malariafactviews: Malariafactview.count,
+      questions: Malariafactview.joins(:malariafact).where('malariafacts.fact_type': Malariafact.fact_types[:question]).count,
+    }
     
     @players_left = @game.nil? ? 
       @user.community.users.count : 
@@ -23,26 +30,10 @@ class WelcomeController < ApplicationController
       @question = fact.get_question
       render 'malariaquestion/base'
     elsif (not @player.nil?) and @player.dead?
-      redirect_to dead_url
+      render 'dead'
     elsif (not @player.nil?) and @player.target == @player
       render 'win'
     end
-  end
-  
-  def dead_screen
-    @user = current_user()
-    @stats = get_stats()
-    @player = @user.players.first
-    if @player.nil? or not @player.dead?
-      redirect_to root_url
-    end
-    @game = @player.game
-    @killstories = Killstory.where(game: @game, is_kill_story: true).order(created_at: :desc)
-    @deathstories = Killstory.where(game: @game, is_kill_story: false).order(created_at: :desc)
-    @players_left = @game.players.to_a.keep_if(&:alive?).length
-    @kills = Killstory.where(killer_id: @player.id)
-    @death = Killstory.where(dead_id: @player.id).first
-    render 'dead'
   end
 
   def malaria_question_submit
