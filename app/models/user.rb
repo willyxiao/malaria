@@ -28,6 +28,14 @@ class User < ActiveRecord::Base
         not self.where(email: email, confirmed_email: true).empty?
     end
     
+    def self.print_emails(users)
+        users.each do |user|
+            if user.confirmed_email
+                puts "#{user.email},"
+            end
+        end
+    end
+    
     def save_unconfirmed_email(email)
         if not User.valid_email?(email)
             throw :save_error, "Invalid email #{email}, must end in .edu"
