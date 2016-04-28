@@ -30,6 +30,15 @@ class Game < ActiveRecord::Base
         end
     end
     
+    def self.take_out_player(b)
+        SiteEvent.create(event: "Taking out player id: #{b.id}")
+        a = b.assassin
+        a.target = b.target
+        b.target_id = nil
+        a.save
+        b.save
+    end
+
     def fix_take_no_kill
         self.fix_killstories()
 
