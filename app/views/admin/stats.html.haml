@@ -11,6 +11,7 @@
                     %th Registered
                     %th Players
                     %th Deaths
+                    %th Kills
                     %th Still Alive
                     %th Game Start
                     %th Last Kill
@@ -21,6 +22,7 @@
                         %td= community[:name]
                         %td= community[:registered]
                         %td= community[:players]
+                        %td{ style: "color: red" }= "-#{community[:kills]}"                        
                         %td{ style: "color: red" }= "-#{community[:deaths]}"
                         %td= community[:players].to_i - community[:deaths].to_i
                         %td= community[:game_start]

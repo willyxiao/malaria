@@ -91,6 +91,7 @@ class AdminController < ApplicationController
         
         @users = User.all
         @communities = Community.all.order('school_id DESC').map do |community|
+            game = community.game
             game_started = (not community.game.nil?)
             deaths = game_started ? Player.where(community: community, target_id: nil).count : 0
             {
@@ -102,6 +103,7 @@ class AdminController < ApplicationController
                 last_kill: (game_started and deaths > 0) ? (Killstory.where(game_id: community.game.id, is_kill_story: true).order("created_at DESC").first.created_at) : nil,
                 players: Player.where(community: community).count,
                 deaths: deaths,
+                kills: game_started ? Killstory.where(game_id: game.id, is_kill_story: true).count : 0,
             }
         end
     end
