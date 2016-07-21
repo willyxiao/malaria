@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :require_logged_out, only: [:check_hash, :register, :register_hash, :login]
-  before_action :require_logged_in, only: [:index, :kill, :email, :death_story, :malaria_question_submit, :users_list]
+  before_action :require_logged_in, only: [:index, :kill, :email, :death_story, :malaria_question_submit, :users_list, :final_stats]
   before_action :require_email, only: [:index]
   before_action :require_confirmed_email, only: [:kill]
   
@@ -61,6 +61,48 @@ class WelcomeController < ApplicationController
         redirect_to root_url, flash: { message: question[:incorrect_text] }
       end
     end
+
+  end
+  
+  def final_stats
+    @user = current_user
+    
+    if ["Wellesley for Public Health", 
+        "TASC", 
+        "MedLife", 
+        "CCHI", 
+        "GMB", 
+        "School of Public Health", 
+        "Mather House"
+        ].include?(@user.community.name)
+        redirect_to root_url, flash: { message: "Sorry your game never completed. No stats are available." }
+    end
+    
+    if @user.players.take.nil?
+      redirect_to root_url, flash: { message: "Your game never started, or you weren't a part of it." }
+    else 
+      @player = @user.players.take
+    end
+
+    @community = @user.community
+    @game = @player.game
+    
+    @player_stat = @player.player_stat
+    @player_stats = PlayerStat.all
+    @game_player_stats = PlayerStat.where(game_id: @game.id)
+    
+    @ranks = {
+      total: {
+        time_alive: PlayerStat.where("total_time_alive > ?", @player_stat.total_time_alive).count + 1,
+        num_kills: PlayerStat.where("number_of_kills > ?", @player_stat.number_of_kills).count + 1,
+        kill_rate: PlayerStat.where("kill_rate_by_day > ?", @player_stat.kill_rate_by_day).count + 1,
+      },
+      game: {
+        time_alive: PlayerStat.where("total_time_alive > ?", @player_stat.total_time_alive).where(game_id: @game.id).count + 1,
+        num_kills: PlayerStat.where("number_of_kills > ?", @player_stat.number_of_kills).where(game_id: @game.id).count + 1,        
+        kill_rate: PlayerStat.where("kill_rate_by_day > ?", @player_stat.kill_rate_by_day).where(game_id: @game.id).count + 1,
+      }
+    }
 
   end
   

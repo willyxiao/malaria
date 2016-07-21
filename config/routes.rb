@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post 'kill', to: 'welcome#kill'
   post 'death_story', to: 'welcome#death_story'
   post 'question', to: 'welcome#malaria_question_submit'
+  get 'final_stats', to: 'welcome#final_stats', as: 'final_stats'
   
   get 'users_list', to: 'welcome#users_list', as: 'users_list'
   

@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
     has_many :players
+    has_many :player_stats
     belongs_to :community
     
     def shuffle_targets
@@ -30,6 +31,34 @@ class Game < ActiveRecord::Base
         end
     end
     
+    def compute_stats
+        SiteEvent.create(event: "Computing stats for game #{self.id}")
+        self.players.each do |player|
+            if player.alive?
+                time_dead = Killstory.
+                    where(is_kill_story: true, dead_id: self.players.map(&:id)).
+                    order(:created_at).
+                    last.
+                    created_at + 1
+            elsif Killstory.where(is_kill_story: true, dead_id: player.id).count < 1
+                # for the case in which the player is taken out
+                time_dead = player.updated_at
+            else
+                time_dead = Killstory.where(is_kill_story: true, dead_id: player.id).take.created_at
+            end
+            num_kills = Killstory.where(killer_id: player.id, is_kill_story: true).count
+            PlayerStat.create({
+                player_id: player.id,
+                game_id: self.id,
+                total_time_alive: time_dead - self.created_at,
+                time_dead: time_dead,
+                number_of_kills: num_kills,
+                kill_rate_by_day: (num_kills / (time_dead - self.created_at))*(60*60*24),
+            })
+        end
+    
+    end
+
     def self.take_out_player(b)
         SiteEvent.create(event: "Taking out player id: #{b.id}")
         a = b.assassin
@@ -63,4 +92,5 @@ class Game < ActiveRecord::Base
         end
         game.shuffle_targets
     end
+    
 end

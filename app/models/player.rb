@@ -5,6 +5,7 @@ class Player < ActiveRecord::Base
     belongs_to :target, class_name: "Player"
     
     has_many :killstories
+    has_one :player_stat
 
     def self.create_player(user, game, community)
         self.create!(community: community, game: game, user: user)

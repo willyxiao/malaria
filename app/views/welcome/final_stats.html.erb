@@ -1,0 +1,177 @@
+<%= render partial: 'shared/malariafactloader' %>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+    
+    function drawChart() {
+        drawTotalTimeAlive();
+        drawTotalKills();
+        drawTotalKillRate();
+        drawGameTimeAlive();
+        drawGameKills();
+        drawGameKillRate();
+    }
+    
+    function drawHistogram(data, element_id, hAxis_title, vAxis_format) {
+        var options = {
+          legend: { position: 'none' },
+          vAxis: {
+              title: "Number of players",
+              format: (vAxis_format || ""),
+          },
+          hAxis: {
+              title: hAxis_title,
+              slantedText: true,
+          }
+        };
+        var chart = new google.visualization.Histogram(document.getElementById(element_id));
+        chart.draw(data, options);
+    }
+
+    function drawTotalTimeAlive() {
+        var data = google.visualization.arrayToDataTable([
+            ["Time Alive"],
+            <% @player_stats.each do |player| %>
+                <%= "[#{player.total_time_alive / (60*60)}]," %>
+            <% end %>
+        ]);
+        drawHistogram(data, "time_alive_total", "Hours", "");
+    }
+    function drawGameTimeAlive() {
+        var data = google.visualization.arrayToDataTable([
+            ["Time Alive"],
+            <% @game_player_stats.each do |player| %>
+                <%= "[#{player.total_time_alive / (60*60)}]," %>
+            <% end %>
+        ]);
+        drawHistogram(data, "time_alive_game", "Hours", "");
+    }
+    function drawTotalKills(){
+        var data = google.visualization.arrayToDataTable([
+            ["Kills"],
+            <% @player_stats.each do |player| %>
+                <%= "[#{player.number_of_kills}]," %>
+            <% end %>
+        ]);
+        drawHistogram(data, "kills_total", "Number", "");
+    }
+    function drawGameKills(){
+        var data = google.visualization.arrayToDataTable([
+            ["Kills"],
+            <% @game_player_stats.each do |player| %>
+                <%= "[#{player.number_of_kills}]," %>
+            <% end %>
+        ]);
+        drawHistogram(data, "kills_game", "Number", "");
+    }
+    function drawTotalKillRate(){
+        var data = google.visualization.arrayToDataTable([
+            ["Kill Rate"],
+            <% @player_stats.each do |player| %>
+                <%= "[#{player.kill_rate_by_day}]," %>
+            <% end %>
+        ]);
+        drawHistogram(data, "kill_rate_total", "Kills / Day", "");
+    }
+    function drawGameKillRate(){
+        var data = google.visualization.arrayToDataTable([
+            ["Kill Rate"],
+            <% @game_player_stats.each do |player| %>
+                <%= "[#{player.kill_rate_by_day}]," %>
+            <% end %>
+        ]);
+        drawHistogram(data, "kill_rate_game", "Kills / Day", "");
+    }
+</script>
+<div class="row">
+    <div class="columns small-12 text-center">
+        <h1>Final Stats for <%= @user.name.to_s.force_encoding('UTF-8') %></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="columns small-12 text-center">
+        <%= image_tag "https://graph.facebook.com/v2.5/#{@user.uid}/picture?type=large" %>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="columns small-12">
+        <div class="row">
+            <div class="columns small-3">
+                Compared To:
+            </div>
+            <div class="columns small-3">
+                <h4>Time Alive</h4>
+            </div>
+            <div class="columns small-3">
+                <h4>Number of Kills</h4>      
+            </div>
+            <div class="columns small-3">
+                <h4>Average Kill Rate</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns small-3">
+                ---
+            </div>
+            <div class="columns small-3">
+              <div id="time_alive"><%= number_with_precision(@player_stat.total_time_alive / 60*60, :precision => 2) %> Hours</div>
+            </div>    
+            <div class="columns small-3">
+              <div id="kills"><%= @player_stat.number_of_kills %></div>
+            </div>    
+            <div class="columns small-3">
+              <div id="kill_rate"><%= number_with_precision(@player_stat.kill_rate_by_day, :precision => 2) %> per day</div>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="columns small-3">
+                vs All Malaria Assassins 
+            </div>
+            <div class="columns small-3">
+              <div id="time_alive_total"></div>
+              <div id="time_alive_total_rank">
+                  <%= @ranks[:total][:time_alive].ordinalize %> of <%= @player_stats.count %>
+              </div>
+            </div>
+            <div class="columns small-3">
+              <div id="kills_total"></div>   
+              <div id="kills_total_rank">
+                  <%= @ranks[:total][:num_kills].ordinalize %> of <%= @player_stats.count %>
+              </div>   
+            </div>
+            <div class="columns small-3">
+              <div id="kill_rate_total"></div>
+              <div id="kills_rate_total_rank">
+                  <%= @ranks[:total][:kill_rate].ordinalize %> of <%= @player_stats.count %>
+              </div>   
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns small-3">
+                vs <%= @community.name %>
+            </div>
+            <div class="columns small-3">
+              <div id="time_alive_game"></div>
+              <div id="time_alive_game_rank">
+                  <%= @ranks[:game][:time_alive].ordinalize %> of <%= @game_player_stats.count %>
+              </div>
+            </div>
+            <div class="columns small-3">
+              <div id="kills_game"></div>
+              <div id="kills_game_rank">
+                  <%= @ranks[:game][:num_kills].ordinalize %> of <%= @game_player_stats.count %>
+              </div>   
+            </div>
+            <div class="columns small-3">
+              <div id="kill_rate_game"></div>
+              <div id="kills_rate_game_rank">
+                  <%= @ranks[:game][:kill_rate].ordinalize %> of <%= @game_player_stats.count %>
+              </div>   
+            </div>
+        </div>
+    </div>
+</div>
+
