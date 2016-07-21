@@ -126,9 +126,9 @@
               <div id="kill_rate"><%= number_with_precision(@player_stat.kill_rate_by_day, :precision => 2) %> per day</div>
             </div>    
         </div>
-        <div class="row">
+        <div class="row" style="border: solid 1px black" >
             <div class="columns small-3">
-                vs All Malaria Assassins 
+                <strong>All Malaria Assassins</strong>
             </div>
             <div class="columns small-3">
               <div id="time_alive_total"></div>
@@ -149,9 +149,9 @@
               </div>   
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="border: solid 1px black">
             <div class="columns small-3">
-                vs <%= @community.name %>
+                <strong><%= @community.name %></strong>
             </div>
             <div class="columns small-3">
               <div id="time_alive_game"></div>
