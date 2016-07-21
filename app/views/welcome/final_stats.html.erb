@@ -100,7 +100,7 @@
     <div class="columns small-12">
         <div class="row">
             <div class="columns small-3">
-                Compared To:
+                ---
             </div>
             <div class="columns small-3">
                 <h4>Time Alive</h4>
@@ -173,5 +173,31 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="columns small-12">
+            <h3>Game Events</h3>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Minutes After Start</th>
+                <th>Event</th>
+                <th>Killstory</th>
+                <th>Deathstory</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @events.each do |event| %>
+                <tr>
+                    <td><%= event[:timestamp].to_s.force_encoding('UTF-8') %></td>
+                    <td><%= number_with_precision(event[:minutes], precision: 0) %></td>
+                    <td><%= event[:event].to_s.force_encoding('UTF-8') %></td>
+                    <td><%= event[:killstory].to_s.force_encoding('UTF-8') %></td>
+                    <td><%= event[:deathstory].to_s.force_encoding('UTF-8') %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
-

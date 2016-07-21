@@ -19,6 +19,10 @@ class Player < ActiveRecord::Base
         not self.dead?
     end
     
+    def killed?
+        (Killstory.where(is_kill_story: true, dead_id: self.id).count > 0)
+    end
+    
     def paused_time?
         false
     end

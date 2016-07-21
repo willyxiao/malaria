@@ -89,7 +89,7 @@ class WelcomeController < ApplicationController
     
     @player_stat = @player.player_stat
     @player_stats = PlayerStat.all
-    @game_player_stats = PlayerStat.where(game_id: @game.id)
+    @game_player_stats = PlayerStat.where(game_id: @game.id).order("total_time_alive")
     
     @ranks = {
       total: {
@@ -104,6 +104,34 @@ class WelcomeController < ApplicationController
       }
     }
 
+    # @killstories = Killstory.where(game: @game, is_kill_story: true)
+    # @deathstories = Killstory.where(game: @game, is_kill_story: false)
+    
+    @events = [{
+      timestamp: @game.created_at,
+      minutes: 0,
+      event: "Game begins!",
+    }]
+    @game_player_stats.each do |player_stat|
+      if player_stat.player.killed?
+        ks = Killstory.where(dead_id: player_stat.player.id, is_kill_story: true).take
+        ds = Killstory.where(dead_id: player_stat.player.id, is_kill_story: false).take
+        
+        @events.append({
+          timestamp: ks.created_at,
+          minutes: (ks.created_at - @game.created_at) / 60,
+          event: "#{ks.killer.user.name} assassinated #{player_stat.player.user.name}",
+          killstory: ks.story,
+          deathstory: ds.nil? ? "" : ds.story,
+        })
+      else
+        @events.append({
+          timestamp: player_stat.player.updated_at,
+          minutes: (player_stat.player.updated_at - @game.created_at) / 60,
+          event: "#{player_stat.player.user.name} was removed from the game",
+        })
+      end
+    end
   end
   
   def death_story
