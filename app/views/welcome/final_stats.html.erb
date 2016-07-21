@@ -117,7 +117,7 @@
                 ---
             </div>
             <div class="columns small-3">
-              <div id="time_alive"><%= number_with_precision(@player_stat.total_time_alive / 60*60, :precision => 2) %> Hours</div>
+              <div id="time_alive"><%= number_with_precision(@player_stat.total_time_alive / (60*60), :precision => 2) %> Hours</div>
             </div>    
             <div class="columns small-3">
               <div id="kills"><%= @player_stat.number_of_kills %></div>
