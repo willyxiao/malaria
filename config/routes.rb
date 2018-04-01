@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   get 'rules', to: 'welcome#rules'
+  get 'acknowledgments', to: 'welcome#acknowledgments'
   # get 'dashboard', to:'welcome#dashboard'
   
   get 'register', to: 'welcome#register'

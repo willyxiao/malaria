@@ -262,6 +262,10 @@ class WelcomeController < ApplicationController
   
   def login
   end
+
+  def acknowledgments
+    render 'custom_rules/acknowledgments'
+  end
   
   def rules
     if current_user.nil?
