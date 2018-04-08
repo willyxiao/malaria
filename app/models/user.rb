@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     end
     
     def self.valid_email?(email)
-        not (/^[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-\.]+)+\.edu$/ =~ email).nil?
+        not (/^[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-\.]+)+\$/ =~ email).nil?
     end
     
     def self.email_in_use?(email)
