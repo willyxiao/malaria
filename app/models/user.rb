@@ -21,8 +21,7 @@ class User < ActiveRecord::Base
     end
     
     def self.valid_email?(email)
-        not (/^[A-Z0-9._%a-z\-] =~ email).nil?
-    end
+    
     
     def self.email_in_use?(email)
         not self.where(email: email, confirmed_email: true).empty?
