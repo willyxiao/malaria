@@ -1,5 +1,5 @@
 class WillyMailer < ApplicationMailer
-    WILLY_EMAIL = 'willyxiao@gmail.com'
+    WILLY_EMAIL = 'malariachallenge@gmail.com'
     MALARIA_CHALLENGE = 'malariachallenge@gmail.com'
 
     default from: MALARIA_CHALLENGE

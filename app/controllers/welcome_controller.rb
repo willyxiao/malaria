@@ -165,7 +165,7 @@ class WelcomeController < ApplicationController
     old_target = @player.target
     
     if Killstory.where(killer: @player).count > 0 and (Time.now - Killstory.where(killer: @player).order('id DESC').first.created_at) / 60 < 3
-      redirect_to root_url, flash: { message: "You submitted your kill a little too soon, wait 3 minutes please!" }
+      redirect_to root_url, flash: { message: "You submitted your kill a little too soon, wait 3 minutes please!" } and return
     end
     
     if not Killstory.submit_kill(@player, @player.target, true, params[:killstory])
@@ -195,7 +195,7 @@ class WelcomeController < ApplicationController
       WillyMailer.you_just_died(@user, old_target.user).deliver_now
     end
     
-    redirect_to root_url
+    redirect_to root_url and return
   end
 
   def email
@@ -261,6 +261,10 @@ class WelcomeController < ApplicationController
   end
   
   def login
+  end
+
+  def acknowledgments
+    render 'custom_rules/acknowledgments'
   end
   
   def rules

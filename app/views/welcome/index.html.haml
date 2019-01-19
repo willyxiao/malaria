@@ -4,7 +4,7 @@
             .alert.alert-box
                 %p
                     Your email address is unconfirmed. Please check your inbox (be sure to check your spam too). 
-                    Once you confirm your email address, you will be allowed to report kills.
+                    Once you confirm your email address, you will be allowed to report tags.
                 %p
                     Resubmit your email by clicking 
                     %a{ href: '/email' } here.
@@ -37,7 +37,7 @@
                 %li.fa.fa-long-arrow-right.fa-5x
         .row
             .small-12
-                %strong To assassinate
+                %strong To tag
     .small-4.columns
         - if @game.nil?
             %li.fa.fa-question.fa-5x.fa-border
@@ -49,7 +49,7 @@
     .small-12.columns
         %form{ action: kill_url, method: 'post' }
             = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
-            %label Kill Story:
+            %label Tag Story:
             %textarea#kill-story{ name: 'killstory', placeholder: "One fine April morning as my target was walking nonchalantly to class...", autofocus: 'true' }
             %input.button.expand{ type: 'submit' }
         = render partial: 'shared/users_list_link'

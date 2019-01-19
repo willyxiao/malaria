@@ -26,7 +26,7 @@ gem 'foundation-rails'
 gem 'font-awesome-sass'
 
 # Facebook login
-gem 'omniauth-facebook', '~> 1.4.1'
+gem 'omniauth-facebook'
 
 gem 'envyable'
 

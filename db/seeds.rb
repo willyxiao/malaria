@@ -12,6 +12,8 @@ schools_hash = [
             { name: 'Lowell House' },
             { name: 'Test House' },
             { name: "Dhruv's Housizzle" },
+            { name: "Currier House"},
+            { name: "Dunster House"},
             { name: 'Winthrop House' },
             { name: 'Cabot House' },
             { name: 'School of Public Health' },
